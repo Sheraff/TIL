@@ -18,6 +18,7 @@ baseurl:          ./
 author:
   name:           'Florian Pellet'
   url:            https://florianpellet.com
+  email:          me@florianpellet.com
 
 paginate:         5
 
