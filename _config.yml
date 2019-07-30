@@ -13,7 +13,7 @@ description:      >
   I like JS, reading the mozilla doc, diving into github, cramming on google dev blogs... 
   Here's some of what I learned from it.
 url:              http://til.florianpellet.com
-baseurl:          /
+baseurl:          '/'
 
 author:
   name:           'Florian Pellet'
