@@ -6,5 +6,5 @@ excerpt_separator: <hr>
 <div class="post">
   <h1 class="post-title">{{ page.title }}</h1>
   <span class="post-date">{{ page.date | date_to_string }}</span>
-  <strong>TL;DR</strong>{{ content }}
+  {{ content | remove_first: '<strong>TL;DR</strong>' }}
 </div>
