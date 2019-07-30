@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "|| and && internal coercion"
+excerpt: "Boolean coercion for conditional value setting"
 ---
 
 # || and && internal coercion
