@@ -7,11 +7,11 @@
 permalink:        pretty
 
 # Setup
-title:            Today I Learned
+maintitle:        Today I Learned
 tagline:          'JS nuggets from an early web dev career'
 description:      'There is a lot I don\'t know, some of it might be of interest to you.'
 url:              http://til.florianpellet.com
-baseurl:          ./
+baseurl:          /
 
 author:
   name:           'Florian Pellet'
