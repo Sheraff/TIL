@@ -4,7 +4,7 @@ title:  "Logical operators internal coercion"
 tags:   ['JS', 'Primitives']
 ---
 
-**TL;DR**Logical operators `||` and `&&` can return non boolean values after internal boolean operations have resolved.
+Logical operators `||` and `&&` can return non boolean values after internal boolean operations have resolved.
 ``` javascript
 const foo = true && 'foo' // 'foo'
 const bar = false || 'bar' // 'bar'
