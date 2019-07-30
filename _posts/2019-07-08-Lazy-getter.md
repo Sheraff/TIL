@@ -6,7 +6,6 @@ excerpt: >
 ---
 
 <h2>TL;DR</h2>
-{{ this.excerpt }}
 ```
 get bar() {
     const bar = getBar()
