@@ -6,7 +6,7 @@ excerpt: >
 ---
 
 **TL;DR** Compute a value only when needed, but then only once.
-```
+``` javascript
 get bar() {
     const bar = getBar()
     Object.defineProperty(this, 'bar', { value: bar })
@@ -15,6 +15,12 @@ get bar() {
 ```
 
 <hr>
+
+{{ this.excerpt }}
+
+====
+
+{{ post.excerpt }}
 
 We don't need to compute each and every value at object instanciation. In some cases it's better to deffer some of the CPU work for later. A good way to do this is by using **lazy getters**: to compute a value only when needed, but then only once.
 
