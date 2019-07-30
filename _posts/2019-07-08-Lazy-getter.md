@@ -4,7 +4,7 @@ title:  "Lazy getter"
 excerpt: >
     Compute a value only when needed, but then only once.
 ---
-
+<div>
 **TL;DR** Compute a value only when needed, but then only once.
 ``` javascript
 get bar() {
@@ -13,14 +13,9 @@ get bar() {
     return bar
 }
 ```
+</div>
 
 <hr>
-
-{{ this.excerpt }}
-
-====
-
-{{ post.excerpt }}
 
 We don't need to compute each and every value at object instanciation. In some cases it's better to deffer some of the CPU work for later. A good way to do this is by using **lazy getters**: to compute a value only when needed, but then only once.
 
