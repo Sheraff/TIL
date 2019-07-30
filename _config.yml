@@ -1,6 +1,7 @@
-# Dependencies
-markdown:         kramdown
-highlighter:      rouge
+# Defaults
+ kramdown:
+  input: GFM
+  hard_wrap: false
 
 # Permalinks
 permalink:        pretty
