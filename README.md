@@ -1,1 +1,1 @@
-yo
+yo from gh-pages
