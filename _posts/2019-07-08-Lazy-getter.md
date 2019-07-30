@@ -4,7 +4,7 @@ title:  Lazy getter
 tags:   ['JS', 'Web API']
 ---
 
-Compute a value only when needed, but then only once.
+**TL;DR**Compute a value only when needed, but then only once.
 ``` javascript
 get bar() {
     const bar = getBar()
