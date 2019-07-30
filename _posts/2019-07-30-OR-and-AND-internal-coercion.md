@@ -19,6 +19,8 @@ const foo = 'bar' && 42 // 42
 ```
 Here a string is always coerced to `true` as long as it's not the empty string `''`. So the second expression is returned.
 
+| operator | code | coercion logic |
+| --- | --- | --- |
 | && | `foo && bar` | If `foo` can be coerced to true, returns `bar`; else, returns `foo`. |
 | || | `foo || bar` | If `foo` can be coerced to true, returns `foo`; else, returns `bar`. |
 
