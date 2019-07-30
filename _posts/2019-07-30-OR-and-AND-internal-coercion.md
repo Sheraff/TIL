@@ -21,8 +21,8 @@ Here a string is always coerced to `true` as long as it's not the empty string `
 
 | operator | code | coercion logic |
 | --- | --- | --- |
-| && | `foo && bar` | If `foo` can be coerced to true, returns `bar`; else, returns `foo`. |
-| \|\| | `foo || bar` | If `foo` can be coerced to true, returns `foo`; else, returns `bar`. |
+| `&&` | `foo && bar` | If `foo` can be coerced to true, returns `bar`; else, returns `foo`. |
+| `||` | `foo || bar` | If `foo` can be coerced to true, returns `foo`; else, returns `bar`. |
 
 
 This allows for conditional value setting without using an `if` block
