@@ -1,5 +1,6 @@
 # Defaults
- kramdown:
+
+kramdown:
   input: GFM
   hard_wrap: false
 
@@ -9,7 +10,9 @@ permalink:        pretty
 # Setup
 title:            TiTlE
 tagline:          'JS nuggets from an early web dev career'
-description:      "There is a lot I don't know, some of it might be of interest to you."
+description:      >
+  There is a lot I don't know, some of it might be of interest to you.
+  Some of it might not, you decide.
 url:              http://til.florianpellet.com
 baseurl:          /
 test:             TheBigQuizz
