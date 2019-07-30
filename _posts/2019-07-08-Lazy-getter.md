@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Lazy getter"
-excerpt: >
+title:  Lazy getter
+tldr:   >
     Compute a value only when needed, but then only once.
 ---
 
