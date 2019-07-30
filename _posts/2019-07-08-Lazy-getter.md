@@ -4,7 +4,7 @@ title:  "Lazy getter"
 excerpt: >
     Compute a value only when needed, but then only once.
 ---
-<div>
+
 **TL;DR** Compute a value only when needed, but then only once.
 ``` javascript
 get bar() {
@@ -13,7 +13,8 @@ get bar() {
     return bar
 }
 ```
-</div>
+
+{{ page.excerpt }}
 
 <hr>
 
@@ -38,15 +39,11 @@ const foo = {
     }
 } 
 
-console.log('first', foo.bar) // 42
-console.log('second', foo.bar) // 42
-```
-
-Which would output
-``` powershell
-Computing value...
-42
-42
+console.log('first', foo.bar)
+// Computing value...
+// 42
+console.log('second', foo.bar)
+// 42
 ```
 
 However, if you want to make sure your lazy value behaves like a normal object property, don't forget to make it writable and define a setter too. Read the doc for more on this: [Object.defineProperty()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty).
