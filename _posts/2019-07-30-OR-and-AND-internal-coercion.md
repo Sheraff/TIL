@@ -1,10 +1,7 @@
 ---
 layout: post
 title:  "|| and && internal coercion"
-excerpt: "Boolean coercion for conditional value setting"
 ---
-
-# || and && internal coercion
 
 Logical operators such as `||` and `&&` do boolean conversions internally, but actually return the value of original operands, even if they are not boolean.
 
