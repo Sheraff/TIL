@@ -5,7 +5,6 @@ excerpt: >
     Compute a value only when needed, but then only once.
 ---
 
-**TL;DR** Compute a value only when needed, but then only once.
 ``` javascript
 get bar() {
     const bar = getBar()
@@ -13,8 +12,6 @@ get bar() {
     return bar
 }
 ```
-
-{{ page.excerpt }}
 
 <hr>
 
