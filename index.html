@@ -12,11 +12,7 @@ title: Home
 
     <span class="post-date">{{ post.date | date_to_string }}</span>
 
-    {% if post.tldr != null %}
-      <p>{{ post.tldr }}
-    {% else %}
-        <p>{{ post.excerpt }}
-    {% endif %}
+    {{ post.excerpt }}
   
     <p><a href="{{ post.url }}">Read more</a>
   </div>

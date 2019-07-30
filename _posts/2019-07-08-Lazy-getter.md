@@ -1,10 +1,10 @@
 ---
 layout: post
 title:  Lazy getter
-tldr:   >
-    Compute a value only when needed, but then only once.
+tags:   ['JS', 'Web API']
 ---
 
+Compute a value only when needed, but then only once.
 ``` javascript
 get bar() {
     const bar = getBar()
