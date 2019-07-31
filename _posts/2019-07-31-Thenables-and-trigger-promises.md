@@ -1,0 +1,107 @@
+---
+layout: post
+title:  "Thenables and trigger promises"
+---
+
+Any object containing a `then()` property — also called a thenable — can be used in a [promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) chain.
+``` javascript
+const foo = {
+    then: fn => fn(42)
+}
+Promise.resolve(foo).then(console.log) // 42
+```
+
+<hr>
+
+Promises are a powerful construct in JavaScript: they allow us to write asynchronous code in a concise and readable format. 
+
+Imagine you want to calculate some DOM sizes but you need to wait for your components' hydration before you compute DOM sizes because you use proper [Optimistic Rendering](http://til.florianpellet.com/2019/08/02/Optimistic-rendering/):
+
+```javascript
+const hydrationPromise = new Promise(resolve => {
+    document.addEventListener('hydration', resolve)
+})
+hydrationPromise.then(() => {
+    ... // components are hydrated
+})
+```
+
+But you might also need to wait for your image to load:
+
+```javascript
+const imagePromise = new Promise(resolve => {
+    image.addEventListener('load', resolve)
+})
+Promise.all([
+    hydrationPromise,
+    imagePromise
+]).then(() => {
+    ... // components are hydrated AND image was loaded
+})
+```
+
+As things get more and more complicated, it can start to become tricky when you have multiple objects responding to multiple events at different levels of your code...
+
+```javascript
+
+let hydrationResolve
+const hydrationPromise = new Promise(resolve => {
+    hydrationResolve = resolve
+})
+
+let imageResolve
+const imagePromise = new Promise(resolve => {
+    imageResolve = resolve
+})
+
+Promise.all([
+    hydrationPromise,
+    imagePromise
+]).then(() => {
+    ... // components are hydrated AND image was loaded
+})
+
+document.addEventListener('hydration', hydrationResolve)
+image.addEventListener('load', imageResolve)
+```
+
+And that's when you start passing `resolve` functions around. Doesn't that remind you somewhat of the callback hell from back when we didn't have promises? We need to be able to manipulate Promises more cleanly. Enter **thenables**: objects with a `then` property whose value is a function can become parameters of a Promise chain. 
+
+```javascript
+const thenable = {
+    then: resolve => {
+        ...
+        resolve(42)
+    }
+}
+Promise.resolve(thenable)
+    .then(console.log) // 42
+```
+
+This allows us to construct some interesting objects on top of promises, like **trigger promises**. Let's rewrite our previous example :
+
+``` javascript
+class TriggerPromise {
+    constructor() {
+        this._promise = new Promise(resolve => this.resolve = resolve)
+    }
+
+    then(callback) {
+        return this._promise.then(callback)
+    }
+}
+
+hydrationTrigger = new TriggerPromise()
+imageTrigger = new TriggerPromise()
+
+Promise.all([
+    hydrationTrigger,
+    imageTrigger
+]).then(() => {
+    ... // components are hydrated AND image was loaded
+})
+
+document.addEventListener('hydration', hydrationTrigger.resolve)
+image.addEventListener('load', hydrationTrigger.resolve)
+```
+

@@ -14,9 +14,7 @@ let foo = {
         return costly()
     }
 }
-const idleHandle = requestIdleCallback(() => {
-    foo._value = costly()
-})
+const idleHandle = requestIdleCallback(() => foo._value = costly())
 ```
 
 <hr>
@@ -98,10 +96,10 @@ class IdleValue {
 }
 
 // initialized value but deferred computation
-const foo = new IdleValue(costlyComputation())
+const foo = new IdleValue(costlyComputation)
 
 // obtaining value whether through previous idle callback or direct computation
 console.log(foo.value)
 ```
 
-In more complex implementations, it would be recommended to check the available time for the callback to run by calling `timeRemaining()` on the `IdleDeadline` parameter — and if necessary, chain multiple requests. [Read the doc](https://developer.mozilla.org/en-US/docs/Web/API/Window/requestIdleCallback) to see how powerful `requestIdleCallback` is.
+In more complex implementations, it would be recommended to check the available time for the callback to run by calling `timeRemaining()` on the `IdleDeadline` parameter — and if necessary, chain multiple requests. A full class implementation by [GoogleChromeLabs](https://github.com/GoogleChromeLabs/idlize) is available on Github.
