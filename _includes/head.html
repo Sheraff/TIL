@@ -48,6 +48,6 @@
   {% endfor %}
 
   <script>
-      const tags = "{{ site.tags | jsonify }}"
+      const tags = {{ site.tags | jsonify }}
   </script>
 </head>
