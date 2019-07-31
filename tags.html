@@ -29,6 +29,8 @@ title: Tags
 
 <script>
   const tag = decodeURI(window.location.search.split('=').pop())
+  if(!tag)
+    window.location.replace('{{ site.baseurl }}404')
   document.querySelectorAll('.post').forEach(node => {
     if(!node.dataset.tags.split(',').includes(tag))
       node.style.display = 'none'
