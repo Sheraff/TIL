@@ -10,7 +10,10 @@
   {% endfor %}
 {% endfor %}
 
-{% assign site.posttags = myTags %}
+{% if site.posttags != "" %}
+  {% assign site.posttags = myTags %}
+{% endif %}
+
 
 
 <head>
