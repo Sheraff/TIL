@@ -59,12 +59,12 @@ body {
   --black: #190415;
   --link: #4f9fcf;
   --lightgrey: #e6e4e5;
-  --grey: #e5e5e5;
+  --grey: #c5c4c4;
   --darkgrey: #7a7a7a;
-  --code: #bf61ab;
+  --code: #a46092;
   --text: rgba(0, 0, 0, 0.7);
   --whitetext: rgba(255, 255, 255, 0.7);
-  --bg: #fbf4f6;
+  --bg: #ffffff;
   color: var(--text);
   background-color: var(--bg);
   -webkit-text-size-adjust: 100%;
