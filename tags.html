@@ -3,6 +3,8 @@ layout: default
 title: Tags
 ---
 
+<h1 id="tagName"></h1>
+
 <div class="posts">
   {% for post in site.posts %}
   <div class="post" data-tags="{{ post.tags | join: ',' }}">
@@ -31,8 +33,11 @@ title: Tags
   const tag = decodeURI(window.location.search.split('=').pop())
   if(!tag)
     window.location.replace('{{ site.baseurl }}404')
-  document.querySelectorAll('.post').forEach(node => {
-    if(!node.dataset.tags.split(',').includes(tag))
-      node.style.display = 'none'
-  })
+  else {
+    document.getElementById('tagName').innerText = tag
+    document.querySelectorAll('.post').forEach(node => {
+      if(!node.dataset.tags.split(',').includes(tag))
+        node.style.display = 'none'
+    })
+  }
 </script>
