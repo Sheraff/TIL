@@ -318,6 +318,10 @@ tbody tr:nth-child(odd) th {
 .sidebar a.sidebar-nav-item:focus {
   text-decoration: underline;
 }
+.sidebar .footer a {
+  color: currentColor;
+  text-decoration: underline;
+}
 @media (min-width: 48em) {
   .sidebar {
     position: fixed;
