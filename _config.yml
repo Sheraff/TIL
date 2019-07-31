@@ -7,11 +7,13 @@ kramdown:
 permalink:        pretty
 
 # Setup
-title:            Today I Learned
-tagline:          'JS nuggets from an early web dev career'
+title:            Web Dev Nuggets
+tagline:          'Today I Learned, from an early career in JavaScript'
 description:      >
-  I like JS, reading the mozilla doc, diving into github, cramming on google dev blogs... 
-  Here's some of what I learned from it.
+  I like JavaScript, 
+  reading the mozilla doc, 
+  diving into github, 
+  cramming on google dev blogs...
 url:              http://til.florianpellet.com
 baseurl:          '/./'
 
