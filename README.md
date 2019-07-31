@@ -19,3 +19,17 @@
 - closures
 
 ## improvements
+
+
+## note keeping
+
+### listing site-wide posts tags
+{% assign tags = "" | split: ',' %}
+
+{% for post in site.posts %}
+  {% for tag in post.tags %} 
+    {% unless tags contains tag %}
+      {% assign tags = tags | push: tag %}
+    {% endunless %}
+  {% endfor %}
+{% endfor %}
