@@ -10,7 +10,7 @@ excerpt_separator: <hr>
     {% if page.tags.size != 0 %}
       — 
       {% for tag in page.tags %} 
-        <span class="post-tag">{{ tag }}</span>{% if tag != page.tags.last %}, {% endif %}
+        <span class="post-tag"><a href="{{ site.baseurl}}tags?tag={{ tag }}">{{ tag }}</a></span>{% if tag != page.tags.last %}, {% endif %}
       {% endfor %}
     {% endif %}
   </span>
