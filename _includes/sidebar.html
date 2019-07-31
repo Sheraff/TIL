@@ -24,5 +24,9 @@
     </nav>
 
     <p class="footer">&copy; {{ site.time | date: '%Y' }} <a href="{{ site.author.url }}">{{ site.author.name }}</a></p>
+
+    {% for tag in tags %} 
+      <span>{{ tag }}</span>
+  {% endfor %}
   </div>
 </div>
