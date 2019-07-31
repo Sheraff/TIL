@@ -475,17 +475,6 @@ tbody tr:nth-child(odd) th {
 .post {
 	margin-bottom: 4em;
 
-	&-title {
-		margin-top: 0;
-
-
-		&,
-		a {
-			/* Blog post or page title */
-			color: var(--black);
-		}
-	}
-
 	/* Meta data line below post title */
 	&-meta {
 		display      : block;
@@ -498,6 +487,18 @@ tbody tr:nth-child(odd) th {
 
 	&-tag {}
 
+}
+
+.page-title,
+.post-title,
+h1#tagName {
+	margin-top: 0;
+
+	&,
+	a {
+		/* Blog post or page title */
+		color: var(--black);
+	}
 }
 
 
