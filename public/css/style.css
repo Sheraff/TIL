@@ -412,6 +412,11 @@ h1#tagName a {
   /* Blog post or page title */
   color: var(--black);
 }
+.page-title:not(.list-title),
+.post-title:not(.list-title),
+h1#tagName:not(.list-title) {
+  font-family: "Abril Fatface", serif;
+}
 /* Related posts */
 .related {
   padding-top: 2rem;
