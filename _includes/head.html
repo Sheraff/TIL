@@ -48,6 +48,6 @@
   {% endfor %}
 
   {% for tag in site.tags %} 
-    <meta rel="siteYOYO" content="{{ tag }}">
+    <meta rel="siteYOYO" content="{{ tag | jsonify }}">
   {% endfor %}
 </head>
