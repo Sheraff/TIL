@@ -47,9 +47,7 @@
     <meta content="{{ tag }}">
   {% endfor %}
 
-  {% for tag in site.tags %} 
-    <sctipt>
-        const tags = "{{ tag | jsonify }}"
-    </sctipt>
-  {% endfor %}
+  <sctipt>
+      const tags = "{{ site.tags | jsonify }}"
+  </sctipt>
 </head>
