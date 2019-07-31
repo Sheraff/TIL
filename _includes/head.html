@@ -33,17 +33,21 @@
 
   <meta rel="gloubi" content="{{ page.url }}">
 
-  {% assign site.postTags = "" | split: ',' %}
+  {% assign tags = "" | split: ',' %}
 
   {% for post in site.posts %}
     {% for tag in post.tags %} 
-      {% unless site.postTags contains tag %}
-        {% assign site.postTags = site.postTags | push: tag %}
+      {% unless tags contains tag %}
+        {% assign tags = tags | push: tag %}
       {% endunless %}
     {% endfor %}
   {% endfor %}
 
-  {% for tag in site.postTags %} 
+  {% for tag in tags %} 
     <meta content="{{ tag }}">
+  {% endfor %}
+
+  {% for tag in site.tags %} 
+    <meta rel="siteYOYO" content="{{ tag }}">
   {% endfor %}
 </head>
