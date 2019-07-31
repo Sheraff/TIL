@@ -6,8 +6,11 @@ title: About
 Hey there! 
 
 This mini-site is where I write down some concepts I come across and want to be able to come back to at some point. 
+
 Or some fun things I learned. 
+
 Or just things I remember finding out and getting excited or understanding something new... 
+
 In the end I'm the main *user* as much as I am the contributor of this site. It's my notebook and I'm sharing it in the hope it's useful for other people. **And you should really do the same!**
 
 Learn more and contribute on [GitHub]({{ site.github.repo }}).
