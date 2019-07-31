@@ -57,4 +57,5 @@ now becomes
 ```javascript
 const foo = flag && 'bar'
 ```
-<p class="message">Carefull: in this case, both implementations aren't exactly equivalent in the case where `flag` is *falsy*, as the value of `foo` will be `undefined` in the first case and equal to `flag` in the second.</p>
+
+*Careful*: in this case, both implementations aren't exactly equivalent in the case where `flag` is *falsy*, as the value of `foo` will be `undefined` in the first case and equal to `flag` in the second.
