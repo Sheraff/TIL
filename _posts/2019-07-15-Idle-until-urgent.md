@@ -14,7 +14,9 @@ let foo = {
         return costly()
     }
 }
-const idleHandle = requestIdleCallback(() => foo._value = costly())
+const idleHandle = requestIdleCallback(() => {
+    foo._value = costly()
+})
 ```
 
 <hr>
