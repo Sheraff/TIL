@@ -11,10 +11,10 @@ let foo = {
         if (this._value)
             return this._value
         cancelIdleCallback(idleHandle)
-        return costlyComputation()
+        return costly()
     }
 }
-const idleHandle = requestIdleCallback(() => foo._value = costlyComputation())
+const idleHandle = requestIdleCallback(() => foo._value = costly())
 ```
 
 <hr>
