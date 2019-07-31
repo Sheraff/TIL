@@ -4,7 +4,7 @@ title:  Thenables and trigger promises
 tags:   ['JavaScript', 'Design pattern', 'Promises']
 ---
 
-Any object containing a `then()` property — also called a thenable — can be used in a [promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) chain.
+**TL;DR** Any object containing a `then()` property — also called a thenable — can be used in a [promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) chain.
 ``` javascript
 const foo = {
     then: fn => fn(42)

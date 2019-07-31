@@ -11,9 +11,9 @@ title:            Web Dev Nuggets
 tagline:          'Today I Learned, from an early career in JavaScript'
 description:      >
   I like JavaScript, 
-  reading the mozilla doc, 
-  diving into github, 
-  cramming on google dev blogs...
+  reading the Mozilla doc, 
+  diving into Github, 
+  cramming on Google dev blogs...
 url:              http://til.florianpellet.com
 baseurl:          '/./'
 

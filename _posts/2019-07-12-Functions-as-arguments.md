@@ -4,7 +4,7 @@ title:  Functions as arguments
 tags:   ['JavaScript', 'Anonymous functions', 'Good practices']
 ---
 
-You don't need to declare an *anonymous function* to use as an argument.
+**TL;DR** You don't need to declare an *anonymous function* to use as an argument.
 ``` javascript
 // Don't
 functionCallback(value => console.log(value))

@@ -4,7 +4,7 @@ title:  Idle until urgent
 tags:   ['JavaScript', 'Design pattern', 'Web API', 'Performance']
 ---
 
-Defer calculation of costly values to idle periods, but compute immediately if it is needed before that.
+**TL;DR** Defer calculation of costly values to idle periods, but compute immediately if it is needed before that.
 ```javascript
 let foo = {
     get value() {
