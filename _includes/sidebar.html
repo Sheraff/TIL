@@ -10,7 +10,7 @@
     </div>
 
     <nav class="sidebar-nav">
-      <a class="sidebar-nav-item{% if page.url == site.baseurl %} active{% endif %}" href="{{ site.baseurl }}">Home</a>
+      <a class="sidebar-nav-item{% if page.title == "Home" %} active{% endif %}" href="{{ site.baseurl }}">Home</a>
 
       {% for node in site.pages %}
         {% if node.title != null %}
@@ -26,7 +26,7 @@
     <p class="footer">&copy; {{ site.time | date: '%Y' }} <a href="{{ site.author.url }}">{{ site.author.name }}</a></p>
 
     {% for tag in tags %} 
-      <span>{{ tag }}</span>
+      <a href="{{ site.baseurl}}tags?tag={{ tag }}">{{ tag }}</span>
   {% endfor %}
   </div>
 </div>
