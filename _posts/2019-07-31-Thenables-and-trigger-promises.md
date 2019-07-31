@@ -43,7 +43,6 @@ Promise.all([
 As things get more and more complicated, it can start to become tricky when you have multiple objects responding to multiple events at different levels of your code...
 
 ```javascript
-
 let hydrationResolve
 const hydrationPromise = new Promise(resolve => {
     hydrationResolve = resolve
@@ -78,7 +77,7 @@ Promise.resolve(thenable)
     .then(console.log) // 42
 ```
 
-This allows us to construct some interesting objects on top of promises, like **trigger promises**. Let's rewrite our previous example :
+This allows us to construct some interesting objects on top of promises, like **trigger promises**. 
 
 ``` javascript
 class TriggerPromise {
@@ -90,7 +89,11 @@ class TriggerPromise {
         return this._promise.then(callback)
     }
 }
+```
 
+This class allows us to encapsulate in a single object the promise and its `resolve` function. Now we can rewrite our previous example:
+
+```javascript
 hydrationTrigger = new TriggerPromise()
 imageTrigger = new TriggerPromise()
 
