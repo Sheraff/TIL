@@ -56,16 +56,18 @@ html {
   }
 }
 body {
-  color: #515151;
-  background-color: #fff;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
   --black: #24061f;
-  --link: #09b721;
-  --lightgrey: #f9f9f9;
+  --link: #4f9fcf;
+  --lightgrey: #e8e3e5;
   --grey: #e5e5e5;
   --darkgrey: #7a7a7a;
   --code: #bf61ab;
+  --text: rgba(0, 0, 0, 0.7);
+  --bg: #fbf4f6;
+  color: var(--text);
+  background-color: var(--bg);
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 /* No `:visited` state is required by default (browsers will use `a`) */
 a {
@@ -146,7 +148,7 @@ hr:after {
   top: -0.75em;
   font-size: 1.5em;
   padding: 0 0.25em;
-  background: white;
+  background: var(--bg);
   color: var(--black);
   text-align: center;
 }
@@ -171,6 +173,7 @@ code {
   color: var(--code);
   background-color: var(--lightgrey);
   border-radius: 3px;
+  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.2);
 }
 pre {
   display: block;
@@ -288,7 +291,7 @@ tbody tr:nth-child(odd) th {
 .sidebar {
   text-align: center;
   padding: 2rem 1rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--text);
   background-color: var(--black);
 }
 .sidebar a {
