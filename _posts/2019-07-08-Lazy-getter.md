@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Lazy getter
-tags:   ['JavaScript', 'Design pattern']
+tags:   ['JavaScript', 'Design pattern', 'Performance']
 ---
 
 **TL;DR** Compute a value only when needed, but then only once.
@@ -15,7 +15,7 @@ get bar() {
 
 <hr>
 
-We don't need to compute each and every value at object instanciation. In some cases it's better to deffer some of the CPU work for later. A good way to do this is by using **lazy getters**: to compute a value only when needed, but then only once.
+We don't need to compute each and every value at object instanciation. In some cases it's better to deffer some of the CPU work for later, especially if we're not sure the value is ever going to get used. A good way to do this is by using **lazy getters**: to compute a value only the moment it is needed, but then store it so it doesn't need to be calculated again.
 
 ``` javascript
 function getBar() { 

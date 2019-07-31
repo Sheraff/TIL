@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Logical operators coerce internally"
+title:  Logical operators coerce internally
 tags:   ['JavaScript', 'Primitives']
 ---
 
