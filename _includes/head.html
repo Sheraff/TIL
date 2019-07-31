@@ -1,11 +1,11 @@
 <!-- http://longqian.me/2017/02/09/github-jekyll-tag/ -->
 
-{% assign site.tags = "" | split: ',' %}
+{% assign myTags = "" | split: ',' %}
 
 {% for post in site.posts %}
   {% for tag in post.tags %} 
-    {% unless site.tags contains tag %}
-      {% assign site.tags = site.tags | push: tag %}
+    {% unless myTags contains tag %}
+      {% assign myTags = myTags | push: tag %}
     {% endunless %}
   {% endfor %}
 {% endfor %}
@@ -43,7 +43,7 @@
   <!-- SCRIPT -->
   <script src="{{ site.baseurl }}public/js/script.js"></script>
 
-  {% for tag in site.tags %} 
-    <!-- {{ tag }} -->
+  {% for tag in myTags %} 
+    <meta content="{{ tag }}">
   {% endfor %}
 </head>
