@@ -1,10 +1,7 @@
 ---
 layout: post
-title:  "Idle until urgent"
-excerpt: >
-    Strategy for computationally intensive values consisting of 
-    deferring computation to idle periods but then run immediately 
-    as soon as it’s needed.
+title:  Idle until urgent
+tags:   ['JavaScript', 'Design pattern', 'Web API']
 ---
 
 Strategy for computationally intensive values consisting of deferring computation to idle periods but then run immediately as soon as it’s needed.

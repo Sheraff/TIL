@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Lazy getter
-tags:   ['JS', 'Web API']
+tags:   ['JavaScript', 'Design pattern']
 ---
 
 **TL;DR** Compute a value only when needed, but then only once.
@@ -36,10 +36,10 @@ const foo = {
     }
 } 
 
-console.log('first', foo.bar)
+console.log(foo.bar)
 // Computing value...
 // 42
-console.log('second', foo.bar)
+console.log(foo.bar)
 // 42
 ```
 
