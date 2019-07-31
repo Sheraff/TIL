@@ -10,6 +10,7 @@
   {% endfor %}
 {% endfor %}
 
+{% assign site.tags = myTags %}
 
 
 <head>
@@ -43,7 +44,7 @@
   <!-- SCRIPT -->
   <script src="{{ site.baseurl }}public/js/script.js"></script>
 
-  {% for tag in myTags %} 
+  {% for tag in site.tags %} 
     <meta content="{{ tag }}">
   {% endfor %}
 </head>
