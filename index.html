@@ -15,7 +15,7 @@ title: Home
       {% if post.tags.size != 0 %}
         — 
         {% for tag in post.tags %} 
-          <span class="post-tag"><a href="{{ site.baseurl}}tags?tag={{ tag }}">{{ tag }}</a></span>{% if tag != post.tags.last %}, {% endif %}
+          <span class="post-tag"><a href="{{ site.baseurl }}tags?tag={{ tag }}">{{ tag }}</a></span>{% if tag != post.tags.last %}, {% endif %}
         {% endfor %}
       {% endif %}
     </span>
