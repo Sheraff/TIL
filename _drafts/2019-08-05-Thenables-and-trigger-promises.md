@@ -32,3 +32,5 @@ class TriggerPromise {
     }
 }
 ```
+
+<!-- can we make a CancellerPromise with this?  -->

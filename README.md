@@ -14,5 +14,7 @@
 - css grid 
   - fluid width
   - square cells hack
+- V8 TurboFan bailout reasons: https://github.com/petkaantonov/bluebird/wiki/Optimization-killers
+-  layout thrashing : https://gist.github.com/paulirish/5d52fb081b3570c81e3a
 
 ## improvements
