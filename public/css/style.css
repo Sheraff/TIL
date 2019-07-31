@@ -58,7 +58,7 @@ html {
 body {
   --black: #24061f;
   --link: #4f9fcf;
-  --lightgrey: #e8e3e5;
+  --lightgrey: #e6e1e3;
   --grey: #e5e5e5;
   --darkgrey: #7a7a7a;
   --code: #bf61ab;
@@ -173,7 +173,6 @@ code {
   color: var(--code);
   background-color: var(--lightgrey);
   border-radius: 3px;
-  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.2);
 }
 pre {
   display: block;
@@ -187,6 +186,7 @@ pre {
   word-break: break-all;
   word-wrap: break-word;
   background-color: var(--lightgrey);
+  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.2);
 }
 pre code {
   padding: 0;
