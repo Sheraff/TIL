@@ -6,10 +6,10 @@ tags:   ['JavaScript', 'Anonymous functions', 'Good practices']
 
 You don't need to declare an *anonymous function* to use as an argument.
 ``` javascript
-// Do
-functionCallback(console.log)
 // Don't
 functionCallback(value => console.log(value))
+// Do
+functionCallback(console.log)
 ```
 
 <hr>
