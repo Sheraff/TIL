@@ -31,13 +31,17 @@ title: Tags
 
 <script>
   const tag = decodeURI(window.location.search.split('=').pop())
-  if(!tag)
-    window.location.replace('{{ site.baseurl }}404')
-  else {
+  const notfound = '{{ site.baseurl }}404'
+  let none = true
+  if(tag) {
     document.getElementById('tagName').innerText = tag
     document.querySelectorAll('.post').forEach(node => {
       if(!node.dataset.tags.split(',').includes(tag))
         node.style.display = 'none'
+      else
+        none = false
     })
   }
+  if(!tag || none)
+    window.location.replace(notfound)
 </script>
