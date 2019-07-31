@@ -1,6 +1,7 @@
 ---
 layout: post
-title:  "Thenables and trigger promises"
+title:  Thenables and trigger promises
+tags:   ['JavaScript', 'Design pattern', 'Promises']
 ---
 
 Any object containing a `then()` property — also called a thenable — can be used in a [promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) chain.
@@ -64,7 +65,9 @@ document.addEventListener('hydration', hydrationResolve)
 image.addEventListener('load', imageResolve)
 ```
 
-And that's when you start passing `resolve` functions around. Doesn't that remind you somewhat of the callback hell from back when we didn't have promises? We need to be able to manipulate Promises more cleanly. Enter **thenables**: objects with a `then` property whose value is a function can become parameters of a Promise chain. 
+And that's when you start passing `resolve` functions around. Doesn't that remind you somewhat of the callback hell from back when we didn't have promises? We need to be able to manipulate Promises more cleanly... 
+
+Enter **thenables**: objects with a `then` property whose value is a function can become parameters of a Promise chain. 
 
 ```javascript
 const thenable = {
@@ -91,7 +94,7 @@ class TriggerPromise {
 }
 ```
 
-This class allows us to encapsulate in a single object the promise and its `resolve` function. Now we can rewrite our previous example:
+This class allows us to *encapsulate* in a single object the promise and its `resolve` function. Now we can rewrite our previous example:
 
 ```javascript
 hydrationTrigger = new TriggerPromise()
