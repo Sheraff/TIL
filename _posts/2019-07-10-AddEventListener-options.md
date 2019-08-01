@@ -5,7 +5,6 @@ tags:   ['Javascript', 'Methods', 'Good practices', 'Performance']
 ---
 
 **TL;DR** We don't often see `addEventListener()` be used with a third argument, but it allows for great preformance improvements and cleaner code.
-
 ``` javascript
 window.addEventListener('scroll', () => {}, {passive: true})
 $el.addEventListener('click', () => {}, {once: true})

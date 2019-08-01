@@ -5,7 +5,6 @@ tags:   ['Javascript', 'Methods']
 ---
 
 **TL;DR** `Object.assign()` is a method that allows you to easily merge, override, clone, default object properties.
-
 ``` javascript
 const foo = {foo: 'foo'}
 Object.assign(foo, {bar: 'bar'})
