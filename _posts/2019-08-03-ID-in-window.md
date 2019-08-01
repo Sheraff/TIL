@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  '#id is in window'
-tags:   ['JavaScript', 'HTML', 'Good practice']
+tags:   ['JavaScript', 'HTML', 'Good practices']
 ---
 
 **TL;DR** DOM node IDs are directly available in the `window` object.
