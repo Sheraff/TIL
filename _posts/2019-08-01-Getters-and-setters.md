@@ -37,7 +37,7 @@ const foo = {
 console.log(foo.name) // 'Arthur Dent'
 ```
 
-**Simulating a *private* property**: As long as JavaScript doesn't implement actual [private fields](https://github.com/tc39/proposal-class-fields#private-fields), the convention has been to prefix *conceptually* private properties with a `_`. You can enforce this with a *setter*.
+**Simulating a *private* property**: As long as JavaScript doesn't implement actual [private fields](https://github.com/tc39/proposal-class-fields#private-fields), the convention has been to prefix *conceptually* private properties with an underscore `_`. You can enforce this with a *setter*.
 ```javascript
 const foo = {
     set bar(value) { this._bar = value }

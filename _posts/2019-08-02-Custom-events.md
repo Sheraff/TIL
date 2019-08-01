@@ -25,7 +25,7 @@ $el.dispatchEvent(event)
 ```
 This allows for more modularity, asynchronicity, and atomisation of the code structure. Let's take a look at some examples.
 
-**Event bubbling**: A custom even emmitted by a DOM node can bubble up like any normal event if the option is set in `CustomEvent()`. We can then use a *parent* to catch the events of its children and maybe even centralize the handling logic of the listeners.
+**Event bubbling**: A custom even emmitted by a DOM node can bubble up, like any normal event, if the option is set in `CustomEvent()`. We can then use a *parent* to catch the events of its *children* and maybe even centralize the handling logic of the listeners.
 ```html
 <div id='parent'>
     <div id='child'></div>
@@ -44,7 +44,7 @@ child.dispatchEvent(new CustomEvent('foo', {
 ```
 This strategy can also be used to emmit "global" events: `window` can both emmit events and be the target of listeners, and is accessible from (almost-)anywhere. Similarly, `document` is a parent of (almost-)every DOM node and can have event listeners attached to it as well.
 
-**Passing data with the event**: When sending an event, we might want to pass along some data.
+**Passing data with the event**: When sending an event, we might want to pass along some data. Thankfully, the `detail` property of the options argument is designed especially for this.
 ```javascript
 $el.addEventListener('foo', event => {
     console.log(event.detail)
