@@ -201,6 +201,7 @@ pre {
 }
 pre code {
   padding: 0;
+  margin: 0;
   font-size: 100%;
   color: inherit;
   background-color: transparent;
