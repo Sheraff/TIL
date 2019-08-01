@@ -6,8 +6,11 @@ tags:   ['JavaScript', 'Web API', 'Design pattern']
 
 **TL;DR** We can create our own event types, listen to and emmit them from anywhere, and implement event driven behaviors.
 ``` javascript
-$el.addEventListener('foo', () => { console.log('received foo event') })
+$el.addEventListener('foo', () => { 
+    console.log('received foo event') 
+})
 $el.dispatchEvent(new CustomEvent('foo'))
+// 'received foo event'
 ```
 
 <hr>
@@ -60,7 +63,7 @@ You can take a look at the [Mozilla doc](https://developer.mozilla.org/en-US/doc
 **Custom event targets**: we can even create our own event targets with the constructor `EventTarget()` which will both be able to emmit events and be the target of listeners.
 ``` javascript
 const foo = new EventTarget()
-foo.addEventListener('bar', () => { console.log('received bar event') })
+foo.addEventListener('bar', () => { console.log('received') })
 foo.dispatchEvent(new CustomEvent('bar'))
-// 'received bar event'
+// 'received'
 ```

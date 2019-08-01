@@ -58,7 +58,7 @@ const foo = {
     }
 }
 ```
-You could even imagine emmiting a custom event through `.dispatchEvent()` on property changes for a nice touch of event driven application.
+You could even imagine emmitting a custom event through `.dispatchEvent()` on property changes for a nice touch of event driven application.
 
 *Careful*: it is easy to create an infinite recursion when intercepting access or assignment to the same property. *Getters and setters are also used internally!*
 ```javascript
