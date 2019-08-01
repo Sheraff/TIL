@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  Object assign
-tags:   ['Javascript', 'Methods']
+tags:   ['JavaScript', 'Methods']
 ---
 
 **TL;DR** `Object.assign()` is a method that allows you to easily merge, override, clone, default object properties.

@@ -20,7 +20,6 @@
 - layout thrashing : https://gist.github.com/paulirish/5d52fb081b3570c81e3a
 - closures
 - Object.defineProperty
-- addEventListener other arguments
 
 ## improvements
 

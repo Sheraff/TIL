@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Thenables and trigger promises
+title:  Thenables & trigger promises
 tags:   ['JavaScript', 'Design pattern', 'Promises']
 ---
 
