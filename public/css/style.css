@@ -178,8 +178,8 @@ pre {
   font-family: Menlo, Monaco, "Courier New", monospace;
 }
 code {
-  padding: 0.125em 0.25em;
-  margin: 0.125em 0.25em;
+  padding: 0.125em 0.375em;
+  margin: 0.125em 0;
   font-size: 85%;
   color: var(--code);
   background-color: var(--lightgrey);
