@@ -28,3 +28,7 @@ console.log(window.Date) // ƒ Date()
 ```
 
 *Careful*: it isn't recommended to access the DOM this way as it will easily lead to hard to find errors and could conflict with native APIs. You should try and use `getElementById()` instead. But still, knowing this is useful for rapid prototyping and dirty code.
+
+```javascript
+console.log(document.getElementById('Date')) // HTMLElement
+```
