@@ -33,7 +33,7 @@ console.log(clone)         // { foo: 'foo' }
 console.log(foo === clone) // false
 ```
 
-**Overriding**: using a constant `important`, we can use `Object.assign()` to make sure has at all the keys from `important` set to `important`'s .
+**Overriding**: using a constant `important`, we can use `Object.assign()` to make sure the passed object has at all the keys from `important` set to `important`'s values.
 ```javascript
 const important = {foo: 'foo'}
 const foo = {foo: 'bar'}
