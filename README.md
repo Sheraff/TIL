@@ -18,6 +18,8 @@
 - layout thrashing : https://gist.github.com/paulirish/5d52fb081b3570c81e3a
 - closures
 - Object.defineProperty
+- navigator.connection.saveData && navigator.connection.effectiveType
+- networkIdleCallback ~= boredom-loading (https://github.com/pastelsky/network-idle-callback): basically places a ServiceWorker to intercept all `.fetch()` and add a cooldown period to trigger idleCallback
 
 ## improvements
 
