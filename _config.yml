@@ -1,1 +1,29 @@
-theme: jekyll-theme-cayman
+# Defaults
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+# Permalinks
+permalink:        pretty
+
+# Setup
+title:            Web Dev Nuggets
+tagline:          'Today I Learned, from an early career in JavaScript'
+description:      >
+  I like JavaScript, 
+  reading the Mozilla doc, 
+  diving into Github, 
+  cramming on Google dev blogs...
+url:              http://til.florianpellet.com
+baseurl:          '/./'
+
+author:
+  name:           'Florian Pellet'
+  url:            https://florianpellet.com
+  email:          me@florianpellet.com
+
+paginate:         5
+
+# Custom vars
+github:
+  repo:           https://github.com/sheraff/til
