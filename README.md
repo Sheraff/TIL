@@ -19,7 +19,7 @@
 - [ ] closures
 - [ ] Object.defineProperty
 - [ ] navigator.connection.saveData && navigator.connection.effectiveType
-- [ ] networkIdleCallback ~= boredom-loading (https://github.com/pastelsky/network-idle-callback): basically places a ServiceWorker to intercept all `.fetch()` and add a cooldown period to trigger idleCallback
+- [ ] networkIdleCallback ~= boredom-loading (in contrast w/ lazy-loading) (https://github.com/pastelsky/network-idle-callback): basically places a ServiceWorker to intercept all `.fetch()` and add a debounce cooldown period to trigger idleCallback
 
 ## improvements
 
