@@ -26,7 +26,7 @@ To demonstrate the different possibilities, let's set up a basic DOM and stylesh
     <div class='child'></div>
 </div>
 ```
-```CSS
+```css
 .parent {
     background-color: lightslategray;
 }
@@ -41,12 +41,14 @@ To demonstrate the different possibilities, let's set up a basic DOM and stylesh
     <style>
         .demo .parent {
             background-color: lightslategray;
+            transition: all 1s;
         }
         .demo .child {
             box-shadow: inset 0 0 0 1px black;
             margin: 10px;
             height: 20px;
             width: 80px;
+            transition: all 1s;
         }
     </style>
     <div class='parent'>
@@ -59,7 +61,7 @@ To demonstrate the different possibilities, let's set up a basic DOM and stylesh
 
 **Limiting repaints**: 
 
-```CSS
+```css
 .containment {
     contain: paint;
 }
@@ -71,6 +73,10 @@ To demonstrate the different possibilities, let's set up a basic DOM and stylesh
     <style>
         .demo.paint .containment {
             contain: paint;
+        }
+        .demo.paint .child {
+            position: relative;
+            left: 0;
         }
         .demo.paint .parent:hover .child {
             left: 100px;
@@ -88,7 +94,7 @@ To observe the repaints in Chrome, in the *developer tools*, click <kbd>⋮ > Mo
 
 **Simplifying layout calculations**: 
 
-```CSS
+```css
 .containment {
     contain: size;
 }
@@ -100,6 +106,9 @@ To observe the repaints in Chrome, in the *developer tools*, click <kbd>⋮ > Mo
     <style>
         .demo.size .containment {
             contain: size;
+        }
+        .demo.size .parent {
+            height: 3rem;
         }
         .demo.size .parent:hover .child {
             width: 200px;
@@ -115,7 +124,7 @@ To observe the repaints in Chrome, in the *developer tools*, click <kbd>⋮ > Mo
 
 **Simplifying CSS scopes side-effects**: 
 
-```CSS
+```css
 .containment {
     contain: style;
 }
@@ -150,7 +159,7 @@ To observe the repaints in Chrome, in the *developer tools*, click <kbd>⋮ > Mo
 
 **Limiting reflows**: 
 
-```CSS
+```css
 .containment {
     contain: layout;
 }
