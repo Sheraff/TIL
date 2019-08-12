@@ -37,12 +37,12 @@ To demonstrate the different possibilities, let's set up a basic DOM and stylesh
     width: 80px;
 }
 ```
-<pre>
+<pre class='demo setup'>
     <style>
-        .parent {
+        .demo .parent {
             background-color: lightslategray;
         }
-        .child {
+        .demo .child {
             box-shadow: inset 0 0 0 1px black;
             margin: 10px;
             height: 20px;
@@ -58,7 +58,7 @@ To demonstrate the different possibilities, let's set up a basic DOM and stylesh
 </pre>
 
 **Limiting repaints**: 
-To observe the repaints in Chrome, in the *developer tools*, click <kbd>⋮ > More tools > Rendering</kbd> and check Paint flashing.
+
 ```CSS
 .containment {
     contain: paint;
@@ -67,6 +67,26 @@ To observe the repaints in Chrome, in the *developer tools*, click <kbd>⋮ > Mo
     left: 100px;
 }
 ```
+<pre class='demo paint'>
+    <style>
+        .demo.paint .containment {
+            contain: paint;
+        }
+        .demo.paint .parent:hover .child {
+            left: 100px;
+        }
+    </style>
+    <div class='parent'>
+        <div class='child'></div>
+    </div>
+    <div class='parent containment'>
+        <div class='child'></div>
+    </div>
+</pre>
+
+To observe the repaints in Chrome, in the *developer tools*, click <kbd>⋮ > More tools > Rendering</kbd> and check Paint flashing.
+
+**Simplifying layout calculations**: 
 
 ```CSS
 .containment {
@@ -76,6 +96,24 @@ To observe the repaints in Chrome, in the *developer tools*, click <kbd>⋮ > Mo
     width: 200px;
 }
 ```
+<pre class='demo size'>
+    <style>
+        .demo.size .containment {
+            contain: size;
+        }
+        .demo.size .parent:hover .child {
+            width: 200px;
+        }
+    </style>
+    <div class='parent'>
+        <div class='child'></div>
+    </div>
+    <div class='parent containment'>
+        <div class='child'></div>
+    </div>
+</pre>
+
+**Simplifying CSS scopes side-effects**: 
 
 ```CSS
 .containment {
@@ -89,6 +127,28 @@ To observe the repaints in Chrome, in the *developer tools*, click <kbd>⋮ > Mo
     counter-increment: i;
 }
 ```
+<pre class='demo style'>
+    <style>
+        .demo.style .containment {
+            contain: style;
+        }
+        .demo.style .parent {
+            counter-reset: i;
+        }
+        .demo.style .parent::after, .demo.style .child::after {
+            content: counter(i);
+            counter-increment: i;
+        }
+    </style>
+    <div class='parent'>
+        <div class='child'></div>
+    </div>
+    <div class='parent containment'>
+        <div class='child'></div>
+    </div>
+</pre>
+
+**Limiting reflows**: 
 
 ```CSS
 .containment {
@@ -98,3 +158,21 @@ To observe the repaints in Chrome, in the *developer tools*, click <kbd>⋮ > Mo
     margin: 10px;
 }
 ```
+<pre class='demo layout'>
+    <style>
+        .demo.layout .containment {
+            contain: layout;
+        }
+        .demo.layout .child {
+            margin: 10px;
+        }
+    </style>
+    <div class='parent'>
+        <div class='child'></div>
+    </div>
+    <div class='parent containment'>
+        <div class='child'></div>
+    </div>
+</pre>
+
+[triggers](https://csstriggers.com/)
