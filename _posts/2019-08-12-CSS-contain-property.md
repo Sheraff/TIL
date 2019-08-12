@@ -5,7 +5,7 @@ tags:   ['CSS', 'performance']
 ---
 
 **TL;DR** The `contain` CSS property allows you to define an element as a style boundary in order to optimize the browser's *paints*, *layouts*, and *style contexts* calculations.
-``` CSS
+```css
 .el {
     contain: strict;
 }
@@ -49,6 +49,16 @@ To demonstrate the different possibilities, let's set up a basic DOM and stylesh
             height: 20px;
             width: 80px;
             transition: all 1s;
+        }
+        pre.demo {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            /* justify-items: baseline; */
+        }
+
+        .parent:first-of-type {
+            margin-bottom: 1rem;
         }
     </style>
     <div class='parent'>
