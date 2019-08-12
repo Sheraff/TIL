@@ -37,6 +37,25 @@ To demonstrate the different possibilities, let's set up a basic DOM and stylesh
     width: 80px;
 }
 ```
+<html>
+    <style>
+        .parent {
+            background-color: lightslategray;
+        }
+        .child {
+            box-shadow: inset 0 0 0 1px black;
+            margin: 10px;
+            height: 20px;
+            width: 80px;
+        }
+    </style>
+    <div class='parent'>
+        <div class='child'></div>
+    </div>
+    <div class='parent containment'>
+        <div class='child'></div>
+    </div>
+<html>
 
 **Limiting repaints**: 
 To observe the repaints in Chrome, in the *developer tools*, click <kbd>⋮ > More tools > Rendering</kbd> and check Paint flashing.
