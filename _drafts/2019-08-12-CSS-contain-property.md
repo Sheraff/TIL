@@ -37,7 +37,7 @@ To demonstrate the different possibilities, let's set up a basic DOM and stylesh
     width: 80px;
 }
 ```
-<html>
+<pre>
     <style>
         .parent {
             background-color: lightslategray;
@@ -55,7 +55,7 @@ To demonstrate the different possibilities, let's set up a basic DOM and stylesh
     <div class='parent containment'>
         <div class='child'></div>
     </div>
-<html>
+</pre>
 
 **Limiting repaints**: 
 To observe the repaints in Chrome, in the *developer tools*, click <kbd>⋮ > More tools > Rendering</kbd> and check Paint flashing.
