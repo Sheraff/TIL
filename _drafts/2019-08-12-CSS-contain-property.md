@@ -167,7 +167,7 @@ To observe the repaints in Chrome, in the *developer tools*, click <kbd>⋮ > Mo
     </div>
 </pre>
 
-**Limiting reflows**: 
+**Limiting reflows**: [block formatting context](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context) A BFC Is A Mini Layout In Your Layout, and it prevents margins collapsing
 
 ```css
 .containment {
