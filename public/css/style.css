@@ -235,6 +235,10 @@ pre code {
   background-color: transparent;
   border-radius: 0;
 }
+/* Codepen */
+.cp_embed_wrapper {
+  margin-bottom: 1rem;
+}
 /* Quotes */
 blockquote {
   padding: 0.5rem 1rem;

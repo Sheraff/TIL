@@ -37,37 +37,8 @@ To demonstrate the different possibilities, let's set up a basic DOM and stylesh
     width: 80px;
 }
 ```
-<pre class='demo setup'>
-    <style>
-        .demo .parent {
-            background-color: lightslategray;
-            transition: all 1s;
-        }
-        .demo .child {
-            box-shadow: inset 0 0 0 1px black;
-            margin: 10px;
-            height: 20px;
-            width: 80px;
-            transition: all 1s;
-        }
-        pre.demo {
-            display: flex;
-            flex-direction: column;
-            align-items: left;
-            /* justify-items: baseline; */
-        }
-
-        .parent:first-of-type {
-            margin-bottom: 1rem;
-        }
-    </style>
-    <div class='parent'>
-        <div class='child'></div>
-    </div>
-    <div class='parent containment'>
-        <div class='child'></div>
-    </div>
-</pre>
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="result" data-user="sheraff" data-slug-hash="RwbVgxd" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="CSS containment - 1 - structure"></p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 **Limiting repaints**: 
 
@@ -79,28 +50,7 @@ To demonstrate the different possibilities, let's set up a basic DOM and stylesh
     left: 100px;
 }
 ```
-<pre class='demo paint'>
-    <style>
-        .demo.paint .containment {
-            contain: paint;
-        }
-        .demo.paint .child {
-            position: relative;
-            left: 0;
-        }
-        .demo.paint .parent:hover .child {
-            left: 100px;
-        }
-    </style>
-    <div class='parent'>
-        <div class='child'></div>
-    </div>
-    <div class='parent containment'>
-        <div class='child'></div>
-    </div>
-</pre>
-
-<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="css,result" data-user="sheraff" data-slug-hash="RwbVgxd" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="CSS containment - 1 - structure"></p>
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="result" data-user="sheraff" data-slug-hash="xxKdLgB" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="CSS containment - 1 - structure"></p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 To observe the repaints in Chrome, in the *developer tools*, click <kbd>⋮ > More tools > Rendering</kbd> and check Paint flashing.
@@ -115,25 +65,8 @@ To observe the repaints in Chrome, in the *developer tools*, click <kbd>⋮ > Mo
     width: 200px;
 }
 ```
-<pre class='demo size'>
-    <style>
-        .demo.size .containment {
-            contain: size;
-        }
-        .demo.size .parent {
-            height: 3rem;
-        }
-        .demo.size .parent:hover .child {
-            width: 200px;
-        }
-    </style>
-    <div class='parent'>
-        <div class='child'></div>
-    </div>
-    <div class='parent containment'>
-        <div class='child'></div>
-    </div>
-</pre>
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="result" data-user="sheraff" data-slug-hash="MWgmvpG" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="CSS containment - 1 - structure"></p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 **Simplifying CSS scopes side-effects**: 
 
