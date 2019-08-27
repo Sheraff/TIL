@@ -21,6 +21,7 @@
 - [ ] Page lifecycle API: https://developers.google.com/web/updates/2018/07/page-lifecycle-api
 - [ ] navigator.connection.saveData && navigator.connection.effectiveType
 - [ ] networkIdleCallback ~= boredom-loading (https://github.com/pastelsky/network-idle-callback): basically places a ServiceWorker to intercept all `.fetch()` and add a cooldown period to trigger idleCallback
+- [ ] Memoization (https://nick.scialli.me/an-introduction-to-memoization-in-javascript/)
 
 ## improvements
 
