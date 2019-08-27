@@ -23,7 +23,7 @@ Object.assign(foo, bar)
 console.log(foo) // { foo: 'foo', bar: 'bar' }
 ```
 
-**Cloning**: assigning to an empty object `{}` will make `Object.assign()` return a deep clone.
+**Cloning**: assigning to an empty object `{}` will make `Object.assign()` return a *shallow* clone with all its *enumerable* properties.
 ```javascript
 const foo = {foo: 'foo'}
 const clone = Object.assign({}, foo)
