@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "[TEST] CSS “contain” property"
-tags:   ['CSS', 'performance']
+title:  "[WIP] CSS “contain” property"
+tags:   ['CSS', 'Performance']
 ---
 
 **TL;DR** The `contain` CSS property allows you to define an element as a style boundary in order to optimize the browser's *paints*, *layouts*, and *style contexts* calculations.
