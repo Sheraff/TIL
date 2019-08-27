@@ -95,21 +95,7 @@ To observe the repaints in Chrome, in the *developer tools*, click <kbd>⋮ > Mo
     margin: 10px;
 }
 ```
-<pre class='demo layout'>
-    <style>
-        .demo.layout .containment {
-            contain: layout;
-        }
-        .demo.layout .child {
-            margin: 10px;
-        }
-    </style>
-    <div class='parent'>
-        <div class='child'></div>
-    </div>
-    <div class='parent containment'>
-        <div class='child'></div>
-    </div>
-</pre>
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="result" data-user="sheraff" data-slug-hash="oNvWeev" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="CSS containment - 1 - structure"></p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 [triggers](https://csstriggers.com/)
