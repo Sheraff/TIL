@@ -92,7 +92,7 @@ To observe the repaints in Chrome, in the *developer tools*, click <kbd>⋮ > Mo
     contain: layout;
 }
 .child {
-    margin: 10px;
+    margin-top: 20px;
 }
 ```
 <p class="codepen" data-height="265" data-theme-id="light" data-default-tab="result" data-user="sheraff" data-slug-hash="oNvWeev" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="CSS containment - 1 - structure"></p>
