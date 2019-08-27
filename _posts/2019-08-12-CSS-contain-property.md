@@ -100,6 +100,9 @@ To demonstrate the different possibilities, let's set up a basic DOM and stylesh
     </div>
 </pre>
 
+<p class="codepen" data-height="265" data-theme-id="light" data-default-tab="css,result" data-user="sheraff" data-slug-hash="RwbVgxd" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="CSS containment - 1 - structure"></p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
 To observe the repaints in Chrome, in the *developer tools*, click <kbd>⋮ > More tools > Rendering</kbd> and check Paint flashing.
 
 **Simplifying layout calculations**: 
