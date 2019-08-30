@@ -19,12 +19,14 @@
 - [ ] layout thrashing: https://gist.github.com/paulirish/5d52fb081b3570c81e3a
 - [ ] closures
 - [ ] Object.defineProperty
+- [ ] Page lifecycle API: https://developers.google.com/web/updates/2018/07/page-lifecycle-api
 - [ ] navigator.connection.saveData && navigator.connection.effectiveType
 - [ ] networkIdleCallback ~= boredom-loading (in contrast w/ lazy-loading) (https://github.com/pastelsky/network-idle-callback): basically places a ServiceWorker to intercept all `.fetch()` and add a debounce cooldown period to trigger idleCallback
 - [ ] Block Formatting Contexts (https://www.smashingmagazine.com//2017/12/understanding-css-layout-block-formatting-context/)
 - [ ] Static vs Live NodeList (https://www.stefanjudis.com/blog/accessing-the-dom-is-not-equal-accessing-the-dom/)
 - [ ] CSS `overscroll-behavior: contain;` to prevent a scrollable element to scroll the parent when reaching a boundary
 - [ ] CSS `backdrop-filter: blur(10px);` (https://codepen.io/chriscoyier/pen/GRKqQBo)
+- [ ] Memoization (https://nick.scialli.me/an-introduction-to-memoization-in-javascript/) (=== lazy getter?)
 - [ ] Proxies https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy
 ```javascript
 // objects w/ default property values
@@ -40,20 +42,3 @@ var p = new Proxy({}, handler);
 p.a = 1;
 p.b = undefined;
 ```
-
-
-## improvements
-
-
-## note keeping
-
-### listing site-wide posts tags
-{% assign tags = "" | split: ',' %}
-
-{% for post in site.posts %}
-  {% for tag in post.tags %} 
-    {% unless tags contains tag %}
-      {% assign tags = tags | push: tag %}
-    {% endunless %}
-  {% endfor %}
-{% endfor %}
