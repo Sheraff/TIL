@@ -1,5 +1,6 @@
 ## topics
 - [ ] chrome dev tools
+  - [ ] Live Expression in Console tab allows you to write some JS and see its output live as you use the page
 - [ ] SVG anim
 - [ ] react
   - [ ] ref as store across renders
