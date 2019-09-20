@@ -21,7 +21,7 @@
 - [ ] Object.defineProperty
 - [ ] Page lifecycle API: https://developers.google.com/web/updates/2018/07/page-lifecycle-api
 - [ ] navigator.connection.saveData && navigator.connection.effectiveType
-- [ ] networkIdleCallback ~= boredom-loading (in contrast w/ lazy-loading) (https://github.com/pastelsky/network-idle-callback): basically places a ServiceWorker to intercept all `.fetch()` and add a debounce cooldown period to trigger idleCallback
+- [ ] networkIdleCallback ~= boredom-loading (in contrast w/ lazy-loading) (https://github.com/pastelsky/network-idle-callback): basically places a ServiceWorker to intercept all `.fetch()` and add a debounce cooldown period to trigger idleCallback (another way of doing this involves also debouncing on other user events like mouse movements, scrolling... to prevent loading smth when the user might trigger the loading of smth else)
 - [ ] Block Formatting Contexts (https://www.smashingmagazine.com//2017/12/understanding-css-layout-block-formatting-context/)
 - [ ] Static vs Live NodeList (https://www.stefanjudis.com/blog/accessing-the-dom-is-not-equal-accessing-the-dom/)
 - [ ] CSS `overscroll-behavior: contain;` to prevent a scrollable element to scroll the parent when reaching a boundary
@@ -42,3 +42,6 @@ var p = new Proxy({}, handler);
 p.a = 1;
 p.b = undefined;
 ```
+- [ ] Reflect (http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect) allows access to Object definition methods (`Reflect.set(object, property, value)`). Especially useful from within Proxies or Object.defineProperty()
+    > We can use the Reflect module to call the original function that would have ran if we haven't proxied the object. We could use obj[prop] too, like in the previous example, but this is cleaner, and it uses the same implementation a non-proxied object would use. This maybe doesn't sound important in a simple trap like get, when we can easily replicate the original behavior, but some other traps like ownKeys would be more difficult and error prone to replicate, so it's best to get into the habit of using Reflect in my opinion.
+    —— http://dealwithjs.io/es6-features-10-use-cases-for-proxy/
