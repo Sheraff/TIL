@@ -27,21 +27,24 @@
 - [ ] CSS `overscroll-behavior: contain;` to prevent a scrollable element to scroll the parent when reaching a boundary
 - [ ] CSS `backdrop-filter: blur(10px);` (https://codepen.io/chriscoyier/pen/GRKqQBo)
 - [ ] Memoization (https://nick.scialli.me/an-introduction-to-memoization-in-javascript/) (=== lazy getter?)
-- [ ] Proxies https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy
-```javascript
-// objects w/ default property values
-var handler = {
-    get: function(obj, prop) {
-        return prop in obj ?
-            obj[prop] :
-            37;
-    }
-};
+- [ ] Proxies https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy (cool and pertinent use cases: http://dealwithjs.io/es6-features-10-use-cases-for-proxy/) (to find use cases, google Facade pattern)
+    ```javascript
+    // objects w/ default property values
+    var handler = {
+        get: function(obj, prop) {
+            return prop in obj ?
+                obj[prop] :
+                37;
+        }
+    };
 
-var p = new Proxy({}, handler);
-p.a = 1;
-p.b = undefined;
-```
+    var p = new Proxy({}, handler);
+    p.a = 1;
+    p.b = undefined;
+    ```
+    Proxies can also be useful for adding properties to Arrays in a clean way
 - [ ] Reflect (http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect) allows access to Object definition methods (`Reflect.set(object, property, value)`). Especially useful from within Proxies or Object.defineProperty()
-    > We can use the Reflect module to call the original function that would have ran if we haven't proxied the object. We could use obj[prop] too, like in the previous example, but this is cleaner, and it uses the same implementation a non-proxied object would use. This maybe doesn't sound important in a simple trap like get, when we can easily replicate the original behavior, but some other traps like ownKeys would be more difficult and error prone to replicate, so it's best to get into the habit of using Reflect in my opinion.
+    > We can use the Reflect module to call the original function that would have ran if we haven't proxied the object. We could use `obj[prop]` too, like in the previous example, but this is cleaner, and it uses the same implementation a non-proxied object would use. This maybe doesn't sound important in a simple trap like `get`, when we can easily replicate the original behavior, but some other traps like `ownKeys` would be more difficult and error prone to replicate, so it's best to get into the habit of using Reflect in my opinion.
     —— http://dealwithjs.io/es6-features-10-use-cases-for-proxy/
+
+- [ ] Event driven architecture *needs a bit more googling* (https://github.com/gergob/jsProxy/blob/master/04-onchange-object.js)
