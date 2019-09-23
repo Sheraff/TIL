@@ -48,3 +48,12 @@
     —— http://dealwithjs.io/es6-features-10-use-cases-for-proxy/
 
 - [ ] Event driven architecture *needs a bit more googling* (https://github.com/gergob/jsProxy/blob/master/04-onchange-object.js)
+- [ ] CSS `overscroll-behavior: contain;`
+- [ ] conditional key definition *at object declaration*
+
+```javascript
+const obj = {
+    key: 'value',
+    ...(flag && { foo: 'bar' })
+};
+```
