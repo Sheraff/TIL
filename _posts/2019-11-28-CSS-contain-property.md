@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "[WIP] CSS “contain” property"
+title:  "CSS “contain” property"
 tags:   ['CSS', 'Performance']
 ---
 
