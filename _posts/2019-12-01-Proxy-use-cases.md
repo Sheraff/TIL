@@ -96,7 +96,7 @@ const handler = {
 const proxy = new Proxy(obj, handler)
 ```
 
-And by the way, `Proxy` allows you to intercept **all** of the object's methods. And if you wanted to push your "private" keys further, you could add the `ownKeys`, `has` and `deleteProperty` methods to your handler:
+And by the way, `Proxy` allows you to intercept **all** of the object's methods. And if you wanted to push your "private" keys further, you could add the `ownKeys`, `has` and `deleteProperty` traps to your handler:
 ```javascript
 handler.ownKeys = (obj) => {
     return Object.keys(obj).filter(key => !key.startsWith('_'))
@@ -140,52 +140,58 @@ console.log(playerCondition.paralysed) // undefined
 
 <hr>
 
-**Real world example #4: memoization of API calls**
+**Real world example #4: memoization of function calls**
 
-If you want to make all of your calls to some data the same way, whether the data has never been fetched before or its already loaded, you can create a proxy to this data object to dispatch the calls for you.
+A `Proxy` can also be used to intercept calls to a function.
 ```javascript
-const userDataStore = {
-    1: {name: 'Maria'},
-    2: {name: 'Morty'},
-}
-const handler = {
-    get: (obj, key) => (
-        key in obj
-        ? Promise.resolve(obj[key])
-        : fetch('site.com/api/users/'+key)
-            .then(async response => {
-                const data = await response.json()
-                obj[key] = data
-                return data
-            })
-    )
-}
-const userApiCalls = new Proxy(userDataStore, handler)
+// function returning random integers
+const fn = (arg) => Math.floor(Math.random() * Math.floor(100))
 
-userApiCalls[2].then(console.log) // {name: 'Morty'}
-userApiCalls[9].then(console.log) // {name: 'Chuck'}
+const handler = {
+    apply: (fn, store, [arg]) => {
+        if (store[arg])
+            return store[arg]
+        const result = fn(arg)
+        store[arg] = result
+        return result
+    }
+}
+
+const proxy = new Proxy(fn, handler).bind({})
+
+console.log(proxy('/yo'))   // 86
+console.log(proxy('/yo'))   // 86
+console.log(proxy('/lala')) // 21
+console.log(proxy('/lala')) // 21
 ```
+You might notice the `bind({})` call on the proxy declaration: this is to provide a scope for the function to store its data. In the handler's `apply` trap, the variable `store` refers to this very scope.
 
 <hr>
 
-**Real world example #5: expiration time on memoization**
+**Real world example #5: memoizind and refreshing network requests**
 
-Combining the two previous examples, you can have the proxy fetch and memoize data for you, and set an expiry date on the data!
+Combining the two previous examples, expiration date and memoization, let's simulate `fetch` calls with a refresh duration. This is a very typical case for authentication tokens that remain valid for some duration but expire after a while and need to be refreshed.
 ```javascript
-const apiCalls = new Proxy({}, {
-    get: (obj, key) => {
-        if(obj['_'+key] > Date.now())
-            return Promise.resolve(obj[key])
-        return fetch('site.com/api/'+key)
-            .then(async response => {
-                const data = await response.json()
-                obj['_'+key] = Date.now() + 60000 // in 1 minute
-                obj[key] = data
-                return data
-            })
+const handler = {
+    apply: async (fn, store, [url]) => {
+        if (store['_'+url] > Date.now())
+            return store[url]
+        const result = await fn(url)
+        store[url] = result
+        store['_'+url] = Date.now() + 60000 // a minute from now
+        return result
     }
-})
+}
+const proxy = new Proxy(fetch, handler).bind({})
+const url = '/api/endpoint'
+
+proxy(url).then(console.log) // fresh data, from the `fetch` call
+// after a few seconds
+proxy(url).then(console.log) // stale data, from the `store` object 
+// after a minute
+proxy(url).then(console.log) // fresh data, from the `fetch` call
 ```
+In this example, we're writing a proxy around the actual native `fetch` function, which I find pretty cool!
 
 <hr>
 
@@ -193,22 +199,29 @@ const apiCalls = new Proxy({}, {
 
 If you want to monitor the changes made to an object, you can use a `Proxy` to dispatch an event every time such a change occurs. This is useful in an event based architecture if you want to update your DOM based on a JSON object for example.
 ```javascript
-const target = new EventTarget()
-const state = new Proxy(target, {
-    set: (obj, key, value) => {
-        Reflect.set(obj, key, value)
-        obj.dispatchEvent(new CustomEvent('change', {detail: {key, value}}))
+const state = new Proxy(new EventTarget(), {
+    get: (obj, key) => {
+        const result = Reflect.get(obj, key)
+        if(typeof result === 'function')
+            return result.bind(obj)
+        return result
     },
-    deleteProperty: (obj, key) => {
-        Reflect.deleteProperty(obj, key)
-        obj.dispatchEvent(new CustomEvent('change', {detail: {key, value: undefined}}))
-    }
+    set: (obj, key, value) => {
+        const result = Reflect.set(obj, key, value)
+        if(result)
+            obj.dispatchEvent(new CustomEvent('change', {detail: {key, value}}))
+        return result
+    },
+    deleteProperty: (obj, key) => { 
+        const result = Reflect.deleteProperty(obj, key) 
+        if(result)
+            obj.dispatchEvent(new CustomEvent('change', {detail: {key, value: undefined}}))
+        return result
+    } 
 })
-target.addEventListener('change', e => console.log(e.detail))
-state.foo = 'bar'
-// {key: "foo", value: "bar"}
-delete state.foo
-// {key: "foo", value: undefined}
+state.addEventListener('change', e => console.log(e.detail))
+state.foo = 'bar' // {key: "foo", value: "bar"}
+delete state.foo  // {key: "foo", value: undefined}
 ```
 
 PS: if the use of `Reflect` is confusing to you, I wrote [an article](http://til.florianpellet.com/2019/12/02/Proxy-and-Reflect/) about how it relates to `Proxy`!
