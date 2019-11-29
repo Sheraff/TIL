@@ -71,8 +71,10 @@ const proxiedMessages = new Proxy(politeMessages, {
             return defaultMessages[key]
     }
 })
-console.log(proxiedMessages.warn) // we recommend you do things differently
-console.log(proxiedMessages.error) // you definitely made a mistake there pal
+console.log(proxiedMessages.warn)
+// we recommend you do things differently
+console.log(proxiedMessages.error)
+// you definitely made a mistake there pal
 ```
 
 <hr>
@@ -168,9 +170,9 @@ You might notice the `bind({})` call on the proxy declaration: this is to provid
 
 <hr>
 
-**Real world example #5: memoizind and refreshing network requests**
+**Real world example #5: memoizing and refreshing network requests**
 
-Combining the two previous examples, expiration date and memoization, let's simulate `fetch` calls with a refresh duration. This is a very typical case for authentication tokens that remain valid for some duration but expire after a while and need to be refreshed.
+Combining the two previous examples, *expiration date* and *memoization*, let's simulate `fetch` calls with a refresh duration. This is a very typical case for authentication tokens that remain valid for some duration but expire after a while and need to be refreshed.
 ```javascript
 const handler = {
     apply: async (fn, store, [url]) => {
@@ -197,7 +199,7 @@ In this example, we're writing a proxy around the actual native `fetch` function
 
 **Real world example #6: event based state**
 
-If you want to monitor the changes made to an object, you can use a `Proxy` to dispatch an event every time such a change occurs. This is useful in an event based architecture if you want to update your DOM based on a JSON object for example.
+If you want to monitor the changes made to an object, you can use a `Proxy` to dispatch an event every time such a change occurs. This is useful in an event based architecture if you want to update your DOM based on a JSON state object for example.
 ```javascript
 const state = new Proxy(new EventTarget(), {
     get: (obj, key) => {
@@ -209,13 +211,17 @@ const state = new Proxy(new EventTarget(), {
     set: (obj, key, value) => {
         const result = Reflect.set(obj, key, value)
         if(result)
-            obj.dispatchEvent(new CustomEvent('change', {detail: {key, value}}))
+            obj.dispatchEvent(new CustomEvent('change', {
+                detail: {key, value}
+            }))
         return result
     },
     deleteProperty: (obj, key) => { 
         const result = Reflect.deleteProperty(obj, key) 
         if(result)
-            obj.dispatchEvent(new CustomEvent('change', {detail: {key, value: undefined}}))
+            obj.dispatchEvent(new CustomEvent('change', {
+                detail: {key, value: undefined}
+            }))
         return result
     } 
 })
