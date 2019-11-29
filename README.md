@@ -17,7 +17,6 @@
   - [ ] square cells hack
 - [ ] V8 TurboFan bailout reasons: https://github.com/petkaantonov/bluebird/wiki/Optimization-killers
 - [ ] layout thrashing: https://gist.github.com/paulirish/5d52fb081b3570c81e3a
-- [ ] closures
 - [ ] Object.defineProperty
 - [ ] Page lifecycle API: https://developers.google.com/web/updates/2018/07/page-lifecycle-api
 - [ ] navigator.connection.saveData && navigator.connection.effectiveType
@@ -48,7 +47,6 @@
     —— http://dealwithjs.io/es6-features-10-use-cases-for-proxy/
 
 - [ ] Event driven architecture *needs a bit more googling* (https://github.com/gergob/jsProxy/blob/master/04-onchange-object.js)
-- [ ] CSS `overscroll-behavior: contain;`
 - [ ] conditional key definition *at object declaration*
     ```javascript
     const obj = {
