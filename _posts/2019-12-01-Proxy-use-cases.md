@@ -50,6 +50,8 @@ Object.defineProperty(obj, 'fullName', {
 
 However, proxies are much more powerful than `Object.defineProperty` because they allow you to define how *all* `get` calls are handled and not just how it is handled for one *specific* key.
 
+<hr>
+
 **Real world example #1: fallback dictionnary**
 
 For example, we can use it to define a fallback dictionnary:
@@ -72,6 +74,8 @@ const proxiedMessages = new Proxy(politeMessages, {
 console.log(proxiedMessages.warn) // we recommend you do things differently
 console.log(proxiedMessages.error) // you definitely made a mistake there pal
 ```
+
+<hr>
 
 **Real world example #2: private keys**
 
@@ -110,6 +114,8 @@ handler.deleteProperty = (obj, key) => {
 ```
 And now, even `Object.keys` or `Object.getOwnPropertyNames` could not reach your object's private keys!
 
+<hr>
+
 **Real world example #3: temporary state**
 
 Imagine you are programming a game in which a player can be affected temporarily with different conditions. We can make a proxied object that will automatically return an up to date state when accessed!
@@ -132,7 +138,10 @@ console.log(playerCondition.paralysed) // true
 console.log(playerCondition.paralysed) // undefined
 ```
 
+<hr>
+
 **Real world example #4: memoization of API calls**
+
 If you want to make all of your calls to some data the same way, whether the data has never been fetched before or its already loaded, you can create a proxy to this data object to dispatch the calls for you.
 ```javascript
 const userDataStore = {
@@ -157,7 +166,10 @@ userApiCalls[2].then(console.log) // {name: 'Morty'}
 userApiCalls[9].then(console.log) // {name: 'Chuck'}
 ```
 
+<hr>
+
 **Real world example #5: expiration time on memoization**
+
 Combining the two previous examples, you can have the proxy fetch and memoize data for you, and set an expiry date on the data!
 ```javascript
 const apiCalls = new Proxy({}, {
@@ -175,7 +187,10 @@ const apiCalls = new Proxy({}, {
 })
 ```
 
-**Real world example #5: event based state**
+<hr>
+
+**Real world example #6: event based state**
+
 If you want to monitor the changes made to an object, you can use a `Proxy` to dispatch an event every time such a change occurs. This is useful in an event based architecture if you want to update your DOM based on a JSON object for example.
 ```javascript
 const target = new EventTarget()
