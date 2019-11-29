@@ -113,3 +113,5 @@ This last property, `layout`, is probably the most powerful in terms of optimizi
 ```
 <p class="codepen" data-height="265" data-theme-id="light" data-default-tab="result" data-user="sheraff" data-slug-hash="oNvWeev" style="height: 265px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="CSS containment - 1 - structure"></p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+In this example, you can see that in the *regular* box, the child has its margin "leaking" outside of the parent (this is because of [margin collapse](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing)), whereas since the `contain: layout` box creates a BFC, the margin of the child is calculated from within the parent.
