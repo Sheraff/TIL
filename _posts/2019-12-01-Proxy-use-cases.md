@@ -170,7 +170,7 @@ You might notice the `bind({})` call on the proxy declaration: this is to provid
 
 <hr>
 
-**Real world example #5: memoizing and refreshing network requests**
+**Real world example #5: refreshing stored network requests**
 
 Combining the two previous examples, *expiration date* and *memoization*, let's simulate `fetch` calls with a refresh duration. This is a very typical case for authentication tokens that remain valid for some duration but expire after a while and need to be refreshed.
 ```javascript

@@ -12,6 +12,7 @@ const proxy = new Proxy(object, Reflect)
 <hr>
 
 **What is `Proxy`?**
+
 I already wrote [an article](http://til.florianpellet.com/2019/12/01/Proxy-use-cases/) about what `Proxy` is and what it can do. But here's the most basic example anyway:
 ```javascript
 const object = {a: 1, b: 2}
@@ -26,7 +27,7 @@ console.log(proxy.c) // 42
 
 **What does it have to do with `Reflect`?**
 
-`Reflect` is a javascript object that allows you to **call** all of the native object prototype methods that `Proxy` can intercept.
+`Reflect` is a javascript object that allows you to **call** all of the native object prototype methods that `Proxy` can intercept. *It is the safe way to return from your proxy's traps.*
 
 If you look at our `Proxy` example above, or any of the other example from my [Proxy use cases article](http://til.florianpellet.com/2019/12/01/Proxy-use-cases/), you can see that the fallback behavior is always to run the default Object method. Our `get` falls back to `return obj[key]`, our `has` defaults to `return key in obj`... This is where `Reflect` comes in.
 
@@ -41,7 +42,7 @@ const handler = {
 }
 ```
 
-If we didn't have any conditions on our `get` method, it could further be simplified to
+If we don't have any conditions on our `get` method, it could further be simplified to
 ```javascript
 handler.get = (obj, key) => Reflect.get(obj, key)
 // or even further simplified
@@ -52,11 +53,10 @@ And a fully useless `Proxy` writes as follows:
 ``` javascript
 const proxy = new Proxy(obj, Reflect)
 ```
-In this case, the proxy does nothing but behaves like the original `obj` object would. Of course, this serves no purpose but showing that `Reflect` contains **all** of the native object prototype methods.
+In this case, the proxy does nothing but behaving like the original `obj` object would. Of course, this serves no purpose but showing that `Reflect` contains **all** of the native object prototype methods.
 
 **What's the point exactly?**
-Of course, just using `Reflect` for regular accessors like `get` or `set` seems overkill. But `Reflect.ownKeys` is still better than `Object.getOwnPropertyNames(target).concat(Object.getOwnPropertySymbols(target))`.
 
-Other than brievety of some of the methods like `ownKeys`, using `Reflect` also insures that you properly handle all of the edge cases, and you don't need to worry about returning `undefined` or `false`, ...
+Does a `setter` need to return a value? Does `delete` return something ? What does `Object.keys()` return exactly ? Using `Reflect` insures that you properly handle all of the edge cases, and you don't need to worry about what to return!
 
 Take a look at the [MDN doc](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect) to see the full list of methods that `Reflect` offers.
