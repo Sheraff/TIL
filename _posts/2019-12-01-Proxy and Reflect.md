@@ -5,7 +5,7 @@ tags:   ['JavaScript', 'Methods']
 ---
 You can customize all the ways objects are manipulated with `Proxy`, and still use the built in object prototype methods with `Reflect`.
 **TL;DR** 
-``` javascript
+```javascript
 const proxy = new Proxy(object, Reflect)
 ```
 
@@ -119,10 +119,10 @@ handler.get = (obj, key) => Reflect.get(obj, key)
 handler.get = Reflect.get
 ```
 
-And a fully useless `Proxy` writes as follow:
+And a fully useless `Proxy` writes as follows:
 ``` javascript
 const proxy = new Proxy(obj, Reflect)
 ```
-In this case, the proxy does nothing but behave like the original `obj` object would. Of course, this serves no purpose but showing that `Reflect` contains **all** of the native object prototype methods.
+In this case, the proxy does nothing but behaves like the original `obj` object would. Of course, this serves no purpose but showing that `Reflect` contains **all** of the native object prototype methods.
 
 Take a look at the [MDN doc](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect) to see the full list of methods that `Reflect` offers.
