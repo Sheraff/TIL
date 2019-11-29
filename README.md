@@ -9,7 +9,7 @@
   - [ ] IntersectionObserver
   - [ ] IndexDB
   - [ ] Service Worler
-- [ ] CSS attribute `contain: strict;` restricts layout / paint calculations (https://developers.google.com/web/updates/2016/06/css-containment)
+- [X] CSS attribute `contain: strict;` restricts layout / paint calculations (https://developers.google.com/web/updates/2016/06/css-containment)
 - [ ] PNGs to GIF client-side using WebAssembly ImageMagick rewrite (https://github.com/KnicKnic/WASM-ImageMagick)
 - [ ] preload
 - [ ] css grid 
@@ -26,7 +26,7 @@
 - [ ] CSS `overscroll-behavior: contain;` to prevent a scrollable element to scroll the parent when reaching a boundary
 - [ ] CSS `backdrop-filter: blur(10px);` (https://codepen.io/chriscoyier/pen/GRKqQBo)
 - [ ] Memoization (https://nick.scialli.me/an-introduction-to-memoization-in-javascript/) (=== lazy getter?)
-- [ ] Proxies https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy (cool and pertinent use cases: http://dealwithjs.io/es6-features-10-use-cases-for-proxy/) (to find use cases, google Facade pattern)
+- [X] Proxies https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy (cool and pertinent use cases: http://dealwithjs.io/es6-features-10-use-cases-for-proxy/) (to find use cases, google Facade pattern)
     ```javascript
     // objects w/ default property values
     var handler = {
@@ -42,15 +42,8 @@
     p.b = undefined;
     ```
     Proxies can also be useful for adding properties to Arrays in a clean way
-- [ ] Reflect (http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect) allows access to Object definition methods (`Reflect.set(object, property, value)`). Especially useful from within Proxies or Object.defineProperty()
+- [X] Reflect (http://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect) allows access to Object definition methods (`Reflect.set(object, property, value)`). Especially useful from within Proxies or Object.defineProperty()
     > We can use the Reflect module to call the original function that would have ran if we haven't proxied the object. We could use `obj[prop]` too, like in the previous example, but this is cleaner, and it uses the same implementation a non-proxied object would use. This maybe doesn't sound important in a simple trap like `get`, when we can easily replicate the original behavior, but some other traps like `ownKeys` would be more difficult and error prone to replicate, so it's best to get into the habit of using Reflect in my opinion.
     —— http://dealwithjs.io/es6-features-10-use-cases-for-proxy/
 
 - [ ] Event driven architecture *needs a bit more googling* (https://github.com/gergob/jsProxy/blob/master/04-onchange-object.js)
-- [ ] conditional key definition *at object declaration*
-    ```javascript
-    const obj = {
-        key: 'value',
-        ...(flag && { foo: 'bar' })
-    };
-    ```

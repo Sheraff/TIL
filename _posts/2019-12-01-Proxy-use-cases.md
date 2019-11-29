@@ -112,7 +112,7 @@ And now, even `Object.keys` or `Object.getOwnPropertyNames` could not reach your
 
 **Real world example #3: temporary state**
 
-Imagine you are programming a game in which a player can be affected temporarily with different conditions. We can make a proxied object that will autumatically return an up to date state when accessed!
+Imagine you are programming a game in which a player can be affected temporarily with different conditions. We can make a proxied object that will automatically return an up to date state when accessed!
 ```javascript
 const playerCondition = new Proxy({}, {
     set: (obj, key, value) => {
@@ -162,13 +162,12 @@ Combining the two previous examples, you can have the proxy fetch and memoize da
 ```javascript
 const apiCalls = new Proxy({}, {
     get: (obj, key) => {
-        const expireTime = obj['_'+key]
-        if(expireTime && expireTime > Date.now())
+        if(obj['_'+key] > Date.now())
             return Promise.resolve(obj[key])
         return fetch('site.com/api/'+key)
             .then(async response => {
                 const data = await response.json()
-                obj['_'+key] = Date.now() + 60000 // expires in 1 minute
+                obj['_'+key] = Date.now() + 60000 // in 1 minute
                 obj[key] = data
                 return data
             })
@@ -177,7 +176,7 @@ const apiCalls = new Proxy({}, {
 ```
 
 **Real world example #5: event based state**
-
+If you want to monitor the changes made to an object, you can use a `Proxy` to dispatch an event every time such a change occurs. This is useful in an event based architecture if you want to update your DOM based on a JSON object for example.
 ```javascript
 const target = new EventTarget()
 const state = new Proxy(target, {
@@ -196,3 +195,5 @@ state.foo = 'bar'
 delete state.foo
 // {key: "foo", value: undefined}
 ```
+
+PS: if the use of `Reflect` is confusing to you, I wrote [an article](http://til.florianpellet.com/2019/12/02/Proxy-and-Reflect/) about how it relates to `Proxy`!
