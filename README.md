@@ -47,3 +47,21 @@
     —— http://dealwithjs.io/es6-features-10-use-cases-for-proxy/
 
 - [ ] Event driven architecture *needs a bit more googling* (https://github.com/gergob/jsProxy/blob/master/04-onchange-object.js)
+- [ ] `Symbol.toPrimitive` allows you do dictate how an object coerces based on the type of value the script is asking of it (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toPrimitive)
+    ```javascript
+    // An object with Symbol.toPrimitive property.
+    var obj2 = {
+    [Symbol.toPrimitive](hint) {
+        if (hint == 'number') {
+        return 10;
+        }
+        if (hint == 'string') {
+        return 'hello';
+        }
+        return true;
+    }
+    };
+    console.log(+obj2);     // 10        -- hint is "number"
+    console.log(`${obj2}`); // "hello"   -- hint is "string"
+    console.log(obj2 + ''); // "true"    -- hint is "default"
+    ```
