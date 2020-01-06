@@ -47,7 +47,7 @@
     —— http://dealwithjs.io/es6-features-10-use-cases-for-proxy/
 
 - [ ] Event driven architecture *needs a bit more googling* (https://github.com/gergob/jsProxy/blob/master/04-onchange-object.js)
-- [ ] `Symbol.toPrimitive` allows you do dictate how an object coerces based on the type of value the script is asking of it (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toPrimitive)
+- [ ] `Symbol.toPrimitive` allows you do dictate how an object coerces based on the type of value the script is asking of it (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toPrimitive) (https://www.keithcirkel.co.uk/metaprogramming-in-es6-symbols/)
     ```javascript
     // An object with Symbol.toPrimitive property.
     var obj2 = {
@@ -59,8 +59,42 @@
             return true
         }
     }
-    console.log(+obj2)     // 10        -- hint is "number"
-    console.log(`${obj2}`) // "hello"   -- hint is "string"
-    console.log(obj2 + '') // "true"    -- hint is "default"
+    console.log(+obj2);     // 10        -- hint is "number"
+    console.log(`${obj2}`); // "hello"   -- hint is "string"
+    console.log(obj2 + ''); // "true"    -- hint is "default"
     ```
     `Symbol.iterator` also exists to define iterating behavior, `Symbol.species` to define the prototype
+
+- [ ] Private fields using `Symbol` or `WeakMap`
+    ```javascript
+    // in module.js
+    const privateKey = Symbol('privateField')
+    export class SymbolPrivate {
+        constructor() {
+            this[privateKey] = 42
+            console.log(`internally: ${this[privateKey]}`)
+        }
+    }
+
+    // in main.js
+    const a = new SymbolPrivate() // internally: 42
+    console.log(`externally: ${a.privateKey}`) // externally: undefined
+    console.log(a) // SymbolPrivate {Symbol(privateField): 42}
+    ```
+    w/ `Symbol`, field is readable (easy debug) but not accessible
+    ```javascript
+    // in module.js
+    const privateInstances = new WeakMap()
+    export class WeakMapPrivate {
+        constructor() {
+            privateInstances.set(this, { privateKey: 42 })
+            console.log(`internally: ${privateInstances.get(this).privateKey}`)
+        }
+    }
+
+    // in main.js
+    const a = new WeakMapPrivate() // internally: 42
+    console.log(`externally: ${a.privateKey}`) // externally: undefined
+    console.log(a) // WeakMapPrivate {}
+    ```
+    w/ `WeakMap`, field is really provate (except accessible by "siblings" of the same class)
