@@ -71,19 +71,16 @@
     // in module.js
     const privateKey = Symbol('privateField')
     export class SymbolPrivate {
-        set publicKey (value) {
-            return this[privateKey] = value
-        }
-
-        get publicKey () {
-            return this[privateKey]
+        constructor() {
+            this[privateKey] = 42
+            console.log(`internally: ${this[privateKey]}`)
         }
     }
 
     // in main.js
-    const a = new SymbolPrivate()
-    a.publicKey = "coucou"
-    console.log(a) // SymbolPrivate {Symbol(privateField): "coucou"}
+    const a = new SymbolPrivate() // internally: 42
+    console.log(`externally: ${a.privateKey}`) // externally: undefined
+    console.log(a) // SymbolPrivate {Symbol(privateField): 42}
     ```
     w/ `Symbol`, field is readable (easy debug) but not accessible
     ```javascript
@@ -91,21 +88,14 @@
     const privateInstances = new WeakMap()
     export class WeakMapPrivate {
         constructor() {
-            privateInstances.set(this, {})
-        }
-
-        set publicKey (value) {
-            return Object.assign(privateInstances.get(this), { privateKey: value })
-        }
-
-        get publicKey () {
-            return privateInstances.get(this).privateKey
+            privateInstances.set(this, { privateKey: 42 })
+            console.log(`internally: ${privateInstances.get(this).privateKey}`)
         }
     }
 
     // in main.js
-    const a = new WeakMapPrivate()
-    a.publicKey = "coucou"
+    const a = new WeakMapPrivate() // internally: 42
+    console.log(`externally: ${a.privateKey}`) // externally: undefined
     console.log(a) // WeakMapPrivate {}
     ```
     w/ `WeakMap`, field is really provate (except accessible by "siblings" of the same class)
