@@ -47,7 +47,7 @@
     —— http://dealwithjs.io/es6-features-10-use-cases-for-proxy/
 
 - [ ] Event driven architecture *needs a bit more googling* (https://github.com/gergob/jsProxy/blob/master/04-onchange-object.js)
-- [ ] `Symbol.toPrimitive` allows you do dictate how an object coerces based on the type of value the script is asking of it (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toPrimitive)
+- [ ] `Symbol.toPrimitive` allows you do dictate how an object coerces based on the type of value the script is asking of it (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toPrimitive) (https://www.keithcirkel.co.uk/metaprogramming-in-es6-symbols/)
     ```javascript
     // An object with Symbol.toPrimitive property.
     var obj2 = {
@@ -65,3 +65,47 @@
     console.log(`${obj2}`); // "hello"   -- hint is "string"
     console.log(obj2 + ''); // "true"    -- hint is "default"
     ```
+
+- [ ] Private fields using `Symbol` or `WeakMap`
+    ```javascript
+    // in module.js
+    const privateKey = Symbol('privateField')
+    export class SymbolPrivate {
+        set publicKey (value) {
+            return this[privateKey] = value
+        }
+
+        get publicKey () {
+            return this[privateKey]
+        }
+    }
+
+    // in main.js
+    const a = new SymbolPrivate()
+    a.publicKey = "coucou"
+    console.log(a) // SymbolPrivate {Symbol(privateField): "coucou"}
+    ```
+    w/ `Symbol`, field is readable (easy debug) but not accessible
+    ```javascript
+    // in module.js
+    const privateInstances = new WeakMap()
+    export class WeakMapPrivate {
+        constructor() {
+            privateInstances.set(this, {})
+        }
+
+        set publicKey (value) {
+            return Object.assign(privateInstances.get(this), { privateKey: value })
+        }
+
+        get publicKey () {
+            return privateInstances.get(this).privateKey
+        }
+    }
+
+    // in main.js
+    const a = new WeakMapPrivate()
+    a.publicKey = "coucou"
+    console.log(a) // WeakMapPrivate {}
+    ```
+    w/ `WeakMap`, field is really provate (except accessible by "siblings" of the same class)
