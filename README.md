@@ -81,7 +81,7 @@
     console.log(`externally: ${a.privateKey}`) // externally: undefined
     console.log(a) // SymbolPrivate {Symbol(privateField): 42}
     ```
-    w/ `Symbol`, field is readable (easy debug) but not accessible
+    w/ `Symbol`, field is readable (easy debug) but not hidden (though not secure, through `getOwnPropertySymbols`)
     ```javascript
     // in module.js
     const privateInstances = new WeakMap()
@@ -97,4 +97,4 @@
     console.log(`externally: ${a.privateKey}`) // externally: undefined
     console.log(a) // WeakMapPrivate {}
     ```
-    w/ `WeakMap`, field is really provate (except accessible by "siblings" of the same class)
+    w/ `WeakMap`, field is "class private" (only accessible by "siblings" of the same class)
