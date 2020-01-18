@@ -122,23 +122,33 @@
             console.log('hello from B')
         }
     }
-    const a = new A()
-    const b = new B()
+    const a = new A() // hello from A
+    const b = new B() // hello from B
+    ```
+    Could be used to allow overriding how the `constructor` builds some initial state
+    ```javascript
+    class A {
+        constructor() {
+            this.state = new.target.makeState()
+        }
+        static makeState() {
+            return { }
+        }
+    }
+    class B extends A {
+        static makeState() {
+            return [ ]
+        }
+    }
     ```
 - [ ] Uses for `void` in modern JS. It allows us to evaluate an expression and still return undefined. "In defense of void"
     We're sometimes a bit quick in how we use arrow functions
     ```javascript
     const fn = () => doSomething(arg) // result of doSomething will leak
-    const fn = () => { doSomething(arg) } // result won't leak but we create an unnecessary scope
+    const fn = () => { doSomething(arg) } // result won't leak
     const fn = () => void doSomething(arg) // this is an actual intended use of void: evaluate and return undefined
     ```
-    `void` is also good for garbage collecting a globally scoped IIFE
-    ```javascript
-    function fn() { console.log('yo') }
-    fn() // function is instanciated and never reused...
-    (function() { console.log('yo') })() // function is IIFE and garbage collected but syntax can cause issues w/o `;`
-    void function() { console.log('yo') }() // proper use of void
-    ```
+    `void` is also good with IIFEs
     Here's an example of how the classic IIFE syntax can cause issues that the void operator prevents.
     ```javascript
     function a() { console.log('yo') }
@@ -208,7 +218,31 @@
     a = -~-a // 1
     a = -~-a // -0
     a = -~-a // 1
-    // alternates between -N and N+1
+    // alternates between -N and N+1 (where N is the initial value of a)
     ```
 
 - [ ] `Math.pow()` is old, we now have exponential operator `**`
+- [ ] labeled statements
+    you can better manage nested loops that need to `break` or `continue`
+    ```javascript
+    level1: while(true) { 
+        level2: while(true) { 
+            break level1
+        }
+    }
+
+    while(true) { 
+        while(true) { 
+            break
+        }
+        break
+    }
+    ```
+    you can even `break` out of blocks that aren't loops
+    ```javascript
+    named: if(true) {
+        console.log('yo')
+        break named
+        console.log('hey')
+    }
+    ```
