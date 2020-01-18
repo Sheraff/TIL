@@ -98,3 +98,117 @@
     console.log(a) // WeakMapPrivate {}
     ```
     w/ `WeakMap`, field is "class private" (only accessible by "siblings" of the same class)
+
+- [ ] Parent classes access child classes through `new.target`
+    ```javascript
+    class Unextendable {
+        constructor() {
+            if(new.target !== Unextendable)
+                throw new Error()
+        }
+    }
+    ```
+    ```javascript
+    class A {
+        constructor() {
+            new.target.classMethod()
+        }
+        static classMethod() {
+            console.log('hello from A')
+        }
+    }
+    class B extends A {
+        static classMethod() {
+            console.log('hello from B')
+        }
+    }
+    const a = new A()
+    const b = new B()
+    ```
+- [ ] Uses for `void` in modern JS. It allows us to evaluate an expression and still return undefined. "In defense of void"
+    We're sometimes a bit quick in how we use arrow functions
+    ```javascript
+    const fn = () => doSomething(arg) // result of doSomething will leak
+    const fn = () => { doSomething(arg) } // result won't leak but we create an unnecessary scope
+    const fn = () => void doSomething(arg) // this is an actual intended use of void: evaluate and return undefined
+    ```
+    `void` is also good for garbage collecting a globally scoped IIFE
+    ```javascript
+    function fn() { console.log('yo') }
+    fn() // function is instanciated and never reused...
+    (function() { console.log('yo') })() // function is IIFE and garbage collected but syntax can cause issues w/o `;`
+    void function() { console.log('yo') }() // proper use of void
+    ```
+    Here's an example of how the classic IIFE syntax can cause issues that the void operator prevents.
+    ```javascript
+    function a() { console.log('yo') }
+    const b = a
+    void function (){ console.log('IIFE') }()
+    // instead of
+    function a() { console.log('yo') }
+    const b = a
+    (function (){ console.log('IIFE') })()
+    ```
+    Iterate over a constant array used only once, a pretty common case
+    ```javascript
+    const s = "hello"
+    [1, 2, 3].forEach(console.log)
+    // would be fixed by
+    void [1, 2, 3].forEach(console.log)
+    ```
+    ```javascript
+    const s = "here is a string"
+    /[a-z]/g.exec(s) // this practically never happens though :)
+    ```
+    An easy way to think about this is: every time you are writing an expression that would usually be held within a variable, but aren't defining a variable, you should "assign it to `void`"
+    ```javascript
+    (function(){})()
+    // is the equivalent of
+    function iife(){}
+    iife()
+    // so without assigning to `iife`
+    void function(){}()
+    ```
+    ```javascript
+    [1, 2, 3].forEach(console.log)
+    // is the equivalent of 
+    const arr = [1, 2, 3]
+    arr.forEach(console.log)
+    // so without assigning to `arr`
+    void [1, 2, 3].forEach(console.log)
+    ```
+    ```javascript
+    const fn = () => doSomething(arg)
+    // is the equivalent of 
+    const fn = () => {
+        const result = doSomething(arg)
+        return result
+    }
+    // so without assigning to `result`
+    const fn = () => void doSomething(arg)
+    ```
+- [ ] toggle between `0` and `1`
+    ```javascript
+    // using boolean type coercion `!` and number type coercion `+`
+    a = 0
+    a = +!a // 1
+    a = +!a // 0
+    // alternates between 0 and 1
+    ```
+    ```javascript
+    // using bitwise XOR operator `^` (exclusive disjuction)
+    a = 0
+    a ^= 1 // 1
+    a ^= 1 // 0
+    // alternates between N and N+1 (where N is an even integer)
+    ```
+    ```javascript
+    // using the bitwise NOT operator `~` (turns bit 0 into 1)
+    a = 0
+    a = -~-a // 1
+    a = -~-a // -0
+    a = -~-a // 1
+    // alternates between -N and N+1
+    ```
+
+- [ ] `Math.pow()` is old, we now have exponential operator `**`
