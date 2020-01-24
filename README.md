@@ -246,3 +246,4 @@
         console.log('hey')
     }
     ```
+- [ ] css `mask-image` for opacity gradient (overflowing text) !
