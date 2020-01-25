@@ -167,6 +167,10 @@
     void [1, 2, 3].forEach(console.log)
     ```
     ```javascript
+    const a = '1' + '1'
+    +a === 11 ? console.log('yes') : console.log('no')
+    ```
+    ```javascript
     const s = "here is a string"
     /[a-z]/g.exec(s) // this practically never happens though :)
     ```
@@ -197,6 +201,13 @@
     // so without assigning to `result`
     const fn = () => void doSomething(arg)
     ```
+    But be careful, `void` is only applied to the the next statement
+    ```javascript
+    b = '1' + '1'
+    void +b === 11 ? console.log('yes') : console.log('no')     // no => because it reads `undefined === 11`
+    void (+b === 11) ? console.log('yes') : console.log('no')   // no => because it reads `undefined ? ... : ...`
+    void (+b === 11 ? console.log('yes') : console.log('no'))   // yes
+    ```
 - [ ] toggle between `0` and `1`
     ```javascript
     // using boolean type coercion `!` and number type coercion `+`
@@ -220,7 +231,7 @@
     a = -~-a // 1
     // alternates between -N and N+1 (where N is the initial value of a)
     ```
-
+ 
 - [ ] `Math.pow()` is old, we now have exponential operator `**`
 - [ ] labeled statements
     you can better manage nested loops that need to `break` or `continue`
@@ -247,3 +258,16 @@
     }
     ```
 - [ ] css `mask-image` for opacity gradient (overflowing text) !
+- [ ] Template literals have a grammar to call a function for custom template processing
+    ```javascript
+    console.log`a ${1} b ${2}` // [ 'a ', ' b ', '' ] 1 2
+    ```
+    ```javascript
+    function fn(parts, ...joints) {
+        console.log(parts)
+        console.log(joints)
+    }
+    fn`a ${1} b ${2}`
+    // [ 'a ', ' b ', '' ]
+    // [ 1, 2 ]
+    ```
