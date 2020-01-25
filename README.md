@@ -145,8 +145,8 @@
     We're sometimes a bit quick in how we use arrow functions
     ```javascript
     const fn = () => doSomething(arg) // result of doSomething will leak
-    const fn = () => { doSomething(arg) } // result won't leak
-    const fn = () => void doSomething(arg) // this is an actual intended use of void: evaluate and return undefined
+    const fn = () => { doSomething(arg) } // result won't leak but intent isn't clear
+    const fn = () => void doSomething(arg) // intent is clear: call function for side-effects, drop returned value
     ```
     `void` is also good with IIFEs
     Here's an example of how the classic IIFE syntax can cause issues that the void operator prevents.
