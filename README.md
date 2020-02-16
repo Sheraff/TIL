@@ -271,3 +271,9 @@
     // [ 'a ', ' b ', '' ]
     // [ 1, 2 ]
     ```
+- [ ] css `all: initial` resets all styles 
+    ```css
+    button {
+        all: initial; /* won't have any style, including vendor defaults */
+    }
+    ```
