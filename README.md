@@ -277,3 +277,24 @@
         all: initial; /* won't have any style, including vendor defaults */
     }
     ```
+- [ ] css `display: contents` to prevent tag from creating a box. Layout wise, all the children will behave as though they were siblings of the `display: contents` node and "parent-to-children" layout properties can *pass through* (like a parent `position: relative` and a child `position: absolute`, or a parent `display: flex`and a child `flex: 1`...). It still creates a node in the DOM tree (for CSS selectors and for JS `document`). See MDN [Display box model](https://developer.mozilla.org/en-US/docs/Web/CSS/display-box).
+    ```html
+    <grid>
+        <card>
+            <cell></cell>
+        </card>
+    </grid>
+    ```
+    ```css
+    grid { display: grid }
+    card { display: contents }
+    cell { grid-row-start: 1 }
+    ```
+- [ ] JS: sparse arrays are a thing. An array can have some of its indexes without assigned value (never assigned, deleted). 
+    - It has low overhead (compared to assigning `undefined` for example), 
+    - It logs out explicitely like this `[ <2 empty items>, 'foo', <1 empty item> ]`
+    - Iterators apply their callbacks *only to the values that aren't empty* 
+    ```javascript
+    const array = [,1,,]
+    array.map(x => x) // [ <1 empty item>, 1, <1 empty item> ]
+    ```
