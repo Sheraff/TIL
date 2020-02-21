@@ -298,3 +298,4 @@
     const array = [,1,,]
     array.map(x => x) // [ <1 empty item>, 1, <1 empty item> ]
     ```
+    - `.length` still counts the empty items (meaning that a `for` loop will iterate over empty items whereas a `forEach` won't)
