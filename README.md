@@ -81,7 +81,7 @@
     console.log(`externally: ${a.privateKey}`) // externally: undefined
     console.log(a) // SymbolPrivate {Symbol(privateField): 42}
     ```
-    w/ `Symbol`, field is readable (easy debug) but not hidden (though not secure, through `getOwnPropertySymbols`)
+    w/ `Symbol`, field is readable (easy debug) but not hidden (and not secure, through `getOwnPropertySymbols`)
     ```javascript
     // in module.js
     const privateInstances = new WeakMap()
@@ -198,7 +198,7 @@
         const result = doSomething(arg)
         return result
     }
-    // so without assigning to `result`
+    // so without assigning to `result`
     const fn = () => void doSomething(arg)
     ```
     But be careful, `void` is only applied to the the next statement
@@ -230,6 +230,7 @@
     a = -~-a // -0
     a = -~-a // 1
     // alternates between -N and N+1 (where N is the initial value of a)
+    // equivalent to a += 1-2*a
     ```
  
 - [ ] `Math.pow()` is old, we now have exponential operator `**`
