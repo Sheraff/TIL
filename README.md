@@ -258,7 +258,22 @@
         console.log('hey')
     }
     ```
-- [ ] css `mask-image` for opacity gradient (overflowing text) !
+- [ ] css `mask-image` for opacity gradient (usually needs `-webkit-` prefix)
+    - example 1: fade to background (overflowing text!)
+    ```css
+    p {
+        mask-image: linear-gradient(to bottom, transparent 25%, black 75%);
+    }
+    ```
+    - example 2: clipped content
+    ![Mask-image example: mountain photo with stripped clipping](/public/images/mask-image-example.png)
+    ```css
+    img {
+        mask-image: repeating-linear-gradient(-45deg,
+            transparent 0 20px,
+            black 20px 40px);
+    }
+    ```
 - [ ] Template literals have a grammar to call a function for custom template processing
     ```javascript
     console.log`a ${1} b ${2}` // [ 'a ', ' b ', '' ] 1 2
