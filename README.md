@@ -352,7 +352,7 @@
 
     const ScienceRobot = composeRobot('sample', 'explore')
     const FactoryRobot = composeRobot('pickup', 'assemble')
-    const Replicators = composeRobot('explore', 'assemble')
+    const Replicator = composeRobot('explore', 'assemble')
     const Transformer = composeRobot('assemble', 'explore', 'pickup', 'sample')
 
     const robot1 = new ScienceRobot(3986)
