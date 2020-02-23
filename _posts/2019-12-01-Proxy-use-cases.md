@@ -3,8 +3,7 @@ layout: post
 title:  Proxy use cases
 tags:   ['JavaScript', 'Methods']
 ---
-`Proxy` allows you to intercept all object prototype methods.
-**TL;DR** 
+**TL;DR** `Proxy` allows you to intercept all object prototype methods.
 ``` javascript
 new Proxy(object, {
     get: (obj, key) => { return 42 }
