@@ -260,20 +260,20 @@
     ```
 - [ ] css `mask-image` for opacity gradient (usually needs `-webkit-` prefix)
     - example 1: fade to background (overflowing text!)
-    ```css
-    p {
-        mask-image: linear-gradient(to bottom, transparent 25%, black 75%);
-    }
-    ```
-    - example 2: clipped content
+        ```css
+        p {
+            mask-image: linear-gradient(to bottom, transparent 25%, black 75%);
+        }
+        ```
+    - example 2: clipped content ([codepen](https://codepen.io/sheraff/pen/poJNXXq))
     ![Mask-image example: mountain photo with stripped clipping](/public/images/mask-image-example.png)
-    ```css
-    img {
-        mask-image: repeating-linear-gradient(-45deg,
-            transparent 0 20px,
-            black 20px 40px);
-    }
-    ```
+        ```css
+        img {
+            mask-image: repeating-linear-gradient(-45deg,
+                transparent 0 20px,
+                black 20px 40px);
+        }
+        ```
 - [ ] Template literals have a grammar to call a function for custom template processing
     ```javascript
     console.log`a ${1} b ${2}` // [ 'a ', ' b ', '' ] 1 2
@@ -310,10 +310,10 @@
     - It has low overhead (compared to assigning `undefined` for example), 
     - It logs out explicitely like this `[ <2 empty items>, 'foo', <1 empty item> ]`
     - Iterators apply their callbacks *only to the values that aren't empty* 
-    ```javascript
-    const array = [,1,,]
-    array.map(x => x) // [ <1 empty item>, 1, <1 empty item> ]
-    ```
+        ```javascript
+        const array = [,1,,]
+        array.map(x => x) // [ <1 empty item>, 1, <1 empty item> ]
+        ```
     - `.length` still counts the empty items (meaning that a `for` loop will iterate over empty items whereas a `forEach` won't)
 - [ ] css selector `:only-child`, equivalent to `:first-child:last-child`
 - [ ] JS to `querySelector` with "preprocessor"-like `&` you can use `:scope`
