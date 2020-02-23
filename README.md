@@ -300,3 +300,9 @@
     array.map(x => x) // [ <1 empty item>, 1, <1 empty item> ]
     ```
     - `.length` still counts the empty items (meaning that a `for` loop will iterate over empty items whereas a `forEach` won't)
+- [ ] css selector `:only-child`, equivalent to `:first-child:last-child`
+- [ ] JS to `querySelector` with "preprocessor"-like `&` you can use `:scope`
+    ```js
+    const context = document.getElementById('context')
+    const selected = context.querySelectorAll(':scope > div')
+    ```
