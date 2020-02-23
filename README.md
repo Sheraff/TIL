@@ -250,9 +250,9 @@
         break
     }
     ```
-    you can even `break` out of blocks that aren't loops
+    you can even `break` out of blocks that aren't loops or conditionals
     ```javascript
-    named: if(true) {
+    named: {
         console.log('yo')
         break named
         console.log('hey')
