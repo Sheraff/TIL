@@ -321,3 +321,46 @@
     const context = document.getElementById('context')
     const selected = context.querySelectorAll(':scope > div')
     ```
+- [ ] Reconciliate *inheritance* and *composition*: create a class for common traits (entities in a game, components in a web page, ...), but instead of making a long prototype chain, compose traits from a set of possible traits.
+    ```javascript
+    class Robot {
+        constructor(id) {
+            this.id = id
+        }
+    }
+
+    const featureSet = {
+        assemble() {
+            console.log(`#${this.id} assembled an object`)
+        },
+        explore() {
+            console.log(`#${this.id} explored the planet`)
+        },
+        pickup() {
+            console.log(`#${this.id} picked up materials`)
+        },
+        sample() {
+            console.log(`#${this.id} sampled the ground`)
+        },
+    }
+
+    function composeRobot(...traits) {
+        class ComposedRobot extends Robot {}
+        traits.forEach(trait => ComposedRobot.prototype[trait] = featureSet[trait])
+        return ComposedRobot
+    }
+
+    const ScienceRobot = composeRobot('sample', 'explore')
+    const FactoryRobot = composeRobot('pickup', 'assemble')
+    const Replicators = composeRobot('explore', 'assemble')
+    const Transformer = composeRobot('assemble', 'explore', 'pickup', 'sample')
+
+    const robot1 = new ScienceRobot(3986)
+    const robot2 = new FactoryRobot(9478)
+
+    robot1.sample()   // #3986 sampled the ground
+    robot2.pickup()   // #9478 picked up materials
+    robot1.assemble() // TypeError: robot1.assemble is not a function
+    robot2.explore()  // TypeError: robot2.explore is not a function
+    ```
+
