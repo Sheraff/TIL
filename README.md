@@ -364,3 +364,21 @@
     robot2.explore()  // TypeError: robot2.explore is not a function
     ```
 
+- [ ] `AbortController` allows cancelling an ongoing XHR request
+    ```js
+    let controller
+    function request(url) {
+        if(controller)
+            controller.abort()
+        controller = new AbortController()
+        return fetch(url, {signal: controller.signal})
+        .then(() => console.log(`done: ${url}`))
+        .catch(() => console.log(`failed: ${url}`))
+    }
+    request('/endpoint?q=a')
+    request('/endpoint?q=ab')
+    request('/endpoint?q=abc')
+    // failed: /endpoint?q=a
+    // failed: /endpoint?q=ab
+    // done: /endpoint?q=abc
+    ```
