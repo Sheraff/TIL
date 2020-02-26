@@ -363,4 +363,8 @@
     robot1.assemble() // TypeError: robot1.assemble is not a function
     robot2.explore()  // TypeError: robot2.explore is not a function
     ```
-
+- [ ] there is a base 8 integer grammar in JS (prefix number with `0`)
+    ```js
+    const a = 012 // 10 (8 + 2)
+    const b = 0120 // 80 (64 + 16)
+     ```
