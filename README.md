@@ -368,3 +368,22 @@
     const a = 012 // 10 (8 + 2)
     const b = 0120 // 80 (64 + 16)
      ```
+
+- [ ] `AbortController` allows cancelling an ongoing XHR request
+    ```js
+    let controller
+    function request(url) {
+        if(controller)
+            controller.abort()
+        controller = new AbortController()
+        return fetch(url, {signal: controller.signal})
+        .then(() => console.log(`done: ${url}`))
+        .catch(() => console.log(`failed: ${url}`))
+    }
+    request('/endpoint?q=a')
+    request('/endpoint?q=ab')
+    request('/endpoint?q=abc')
+    // failed: /endpoint?q=a
+    // failed: /endpoint?q=ab
+    // done: /endpoint?q=abc
+    ```
