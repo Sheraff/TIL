@@ -111,8 +111,8 @@ class IdlePromise {
     catch = this.promise.catch.bind(this.promise)
     finally = this.promise.finally.bind(this.promise)
 
-	// this construtor can be used exactly like `new Promise()`,
-	// the generator will receive `resolve` and `reject`
+    // this construtor can be used exactly like `new Promise()`,
+    // the generator will receive `resolve` and `reject`
     constructor(generator) {
         this[IdlePromise.duration] = 0
         this.iterator = generator(this.resolve, this.reject)
