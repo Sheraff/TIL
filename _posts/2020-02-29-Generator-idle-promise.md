@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  
-tags:   ['JavaScript']
+title:  Generators for idle-until-urgent
+tags:   ['JavaScript', 'Design Pattern', 'Performance']
 ---
 
-**TL;DR** Using generator function's `yield` we can segment a long running process into small chunks that fit the *Idle Until Urgent* pattern.
+**TL;DR** Using a generator function's `yield` we can segment a long running process into small chunks that fit the *Idle Until Urgent* pattern.
 ``` javascript
 const promise = new IdlePromise(function* (resolve, reject) {
 	chunkA()
