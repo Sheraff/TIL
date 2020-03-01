@@ -7,12 +7,12 @@ tags:   ['JavaScript', 'Design Pattern', 'Performance']
 **TL;DR** Using a generator function's `yield` we can segment a long running process into small chunks that fit the *Idle Until Urgent* pattern.
 ``` javascript
 const promise = new IdlePromise(function* (resolve, reject) {
-	chunkA()
-	yield
-	chunkB()
-	yield
-	chunkC()
-	resolve()
+    chunkA()
+    yield
+    chunkB()
+    yield
+    chunkC()
+    resolve()
 })
 ```
 
@@ -28,12 +28,12 @@ Let's look at an how to use a generator function to segment a big task into smal
 
 ```javascript
 function* bigTask() {
-	console.log('run chunkA')
-	yield chunkA()
-	console.log('run chunkB')
-	yield chunkB()
-	console.log('run chunkC')
-	return chunkC()
+    console.log('run chunkA')
+    yield chunkA()
+    console.log('run chunkB')
+    yield chunkB()
+    console.log('run chunkC')
+    return chunkC()
 }
 const iterator = bigTask()
 const { value: valueFromA } = iterator.next() // run chunkA
@@ -48,10 +48,10 @@ We can now loop over `iterator` until either the idle callback `IdleDeadline` is
 ```javascript
 const iterator = bigTask()
 requestIdleCallback(deadline => {
-	while(deadline.timeRemaining() > 0) {
-		const { done } = iterator.next()
-		if(done) break
-	}
+    while(deadline.timeRemaining() > 0) {
+        const { done } = iterator.next()
+        if(done) break
+    }
 })
 ```
 
@@ -59,16 +59,16 @@ Now we can wrap our `requestIdleCallback` and call it recursively until we get a
 
 ```javascript
 function run() {
-	requestIdleCallback(deadline => {
-		while(true) {
-			const { done } = iterator.next()
-			if(done) break
-			if(deadline.timeRemaining() < 0) {
-				run()
-				break
-			}
-		}
-	})
+    requestIdleCallback(deadline => {
+        while(true) {
+            const { done } = iterator.next()
+            if(done) break
+            if(deadline.timeRemaining() < 0) {
+                run()
+                break
+            }
+        }
+    })
 }
 ```
 
@@ -76,22 +76,22 @@ One last thing about generators that will be useful to us here is that they can 
 
 ```javascript
 function* bigTask() {
-	// ...
-	yield 10 // between this and the next `yield` statement, we need 10ms
-	// ..
+    // ...
+    yield 10 // between this and the next `yield` statement, we need 10ms
+    // ..
 }
 const iterator = bigTask()
 function run() {
-	requestIdleCallback(deadline => {
-		while(true) {
-			const { done, value } = iterator.next()
-			if(done) break
-			if(deadline.timeRemaining() < value) {
-				run()
-				break
-			}
-		}
-	})
+    requestIdleCallback(deadline => {
+        while(true) {
+            const { done, value } = iterator.next()
+            if(done) break
+            if(deadline.timeRemaining() < value) {
+                run()
+                break
+            }
+        }
+    })
 }
 ```
 
@@ -99,47 +99,47 @@ All that remains now is to wrap this concept into a nice `class` as a ["thenable
 
 ```javascript
 class IdlePromise {
-	static duration = Symbol('Next yield duration') // semi-private key because messing with this would break stuff
-	static padding = 1 // if `yield` doesn't give any information about timing, assume 1ms
+    static duration = Symbol('Next yield duration') // semi-private key because messing with this would break stuff
+    static padding = 1 // if `yield` doesn't give any information about timing, assume 1ms
 
-	// appropriate all methods from a promise, but store `resolve` and `reject` to be used elsewhere
-	promise = new Promise((resolve, reject) => {
-		this.resolve = resolve
-		this.reject = reject
-	})
-	then = this.promise.then.bind(this.promise)
-	catch = this.promise.catch.bind(this.promise)
-	finally = this.promise.finally.bind(this.promise)
+    // appropriate all methods from a promise, but store `resolve` and `reject` to be used elsewhere
+    promise = new Promise((resolve, reject) => {
+        this.resolve = resolve
+        this.reject = reject
+    })
+    then = this.promise.then.bind(this.promise)
+    catch = this.promise.catch.bind(this.promise)
+    finally = this.promise.finally.bind(this.promise)
 
-	// this construtor can be used exactly like `new Promise()`, the generator will receive `resolve` and `reject`
-	constructor(generator) {
-		this[IdlePromise.duration] = 0
-		this.iterator = generator(this.resolve, this.reject)
-		this.run()
-	}
+    // this construtor can be used exactly like `new Promise()`, the generator will receive `resolve` and `reject`
+    constructor(generator) {
+        this[IdlePromise.duration] = 0
+        this.iterator = generator(this.resolve, this.reject)
+        this.run()
+    }
 
-	// executing one chunk, separated from the loops because we need either synchronous or asynchronous calls
-	async step() {
-		const { value, done } = await this.iterator.next()
-		this.done = done
-		if (!done) this[IdlePromise.duration] = value || IdlePromise.padding
-	}
+    // executing one chunk, separated from the loops because we need either synchronous or asynchronous calls
+    async step() {
+        const { value, done } = await this.iterator.next()
+        this.done = done
+        if (!done) this[IdlePromise.duration] = value || IdlePromise.padding
+    }
 
-	// loop asynchronously, with `requestIdleCallback`
-	run() {
-		this.idleCallbackId = requestIdleCallback(async idleDeadline => {
-			while (!this.done && this[IdlePromise.duration] < idleDeadline.timeRemaining())
-				await this.step()
-			if (!this.done) this.run()
-		})
-	}
+    // loop asynchronously, with `requestIdleCallback`
+    run() {
+        this.idleCallbackId = requestIdleCallback(async idleDeadline => {
+            while (!this.done && this[IdlePromise.duration] < idleDeadline.timeRemaining())
+                await this.step()
+            if (!this.done) this.run()
+        })
+    }
 
-	// cancel current `requestIdleCallback` and run immediately
-	async finish() {
-		if (this.idleCallbackId) cancelIdleCallback(this.idleCallbackId)
-		while (!this.done) await this.step()
-		return this.promise
-	}
+    // cancel current `requestIdleCallback` and run immediately
+    async finish() {
+        if (this.idleCallbackId) cancelIdleCallback(this.idleCallbackId)
+        while (!this.done) await this.step()
+        return this.promise
+    }
 }
 ```
 
@@ -147,15 +147,15 @@ And it's as easy to use as a regular `Promise`:
 
 ```javascript
 const idlePromise = new IdlePromise(async function* (resolve, reject) {
-	// initialization (before first `yield`) should be minimal
-	// ...
-	yield 10 // next chunk will require less than 10ms
-	// ...
-	yield 20
-	// ...
-	yield 5
-	// ...
-	resolve('all done!')
+    // initialization (before first `yield`) should be minimal
+    // ...
+    yield 10 // next chunk will require less than 10ms
+    // ...
+    yield 20
+    // ...
+    yield 5
+    // ...
+    resolve('all done!')
 })
 idlePromise.then(console.log) // all done!
 
