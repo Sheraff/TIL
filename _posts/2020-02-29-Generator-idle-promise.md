@@ -111,14 +111,15 @@ class IdlePromise {
     catch = this.promise.catch.bind(this.promise)
     finally = this.promise.finally.bind(this.promise)
 
-    // this construtor can be used exactly like `new Promise()`, the generator will receive `resolve` and `reject`
+	// this construtor can be used exactly like `new Promise()`,
+	// the generator will receive `resolve` and `reject`
     constructor(generator) {
         this[IdlePromise.duration] = 0
         this.iterator = generator(this.resolve, this.reject)
         this.run()
     }
 
-    // executing one chunk, separated from the loops because we need either synchronous or asynchronous calls
+    // executing one chunk
     async step() {
         const { value, done } = await this.iterator.next()
         this.done = done
@@ -146,7 +147,7 @@ class IdlePromise {
 And it's as easy to use as a regular `Promise`:
 
 ```javascript
-const idlePromise = new IdlePromise(async function* (resolve, reject) {
+const idlePromise = new IdlePromise(function* (resolve, reject) {
     // initialization (before first `yield`) should be minimal
     // ...
     yield 10 // next chunk will require less than 10ms
