@@ -208,31 +208,36 @@
     void (+b === 11) ? console.log('yes') : console.log('no')   // no => because it reads `undefined ? ... : ...`
     void (+b === 11 ? console.log('yes') : console.log('no'))   // yes
     ```
-- [ ] toggle between `0` and `1`
-    ```javascript
-    // using boolean type coercion `!` and number type coercion `+`
-    a = 0
-    a = +!a // 1
-    a = +!a // 0
-    // alternates between 0 and 1
-    ```
-    ```javascript
-    // using bitwise XOR operator `^` (exclusive disjuction)
-    a = 0
-    a ^= 1 // 1
-    a ^= 1 // 0
-    // alternates between N and N+1 (where N is an even integer)
-    ```
-    ```javascript
-    // using the bitwise NOT operator `~` (turns bit 0 into 1)
-    a = 0
-    a = -~-a // 1
-    a = -~-a // -0
-    a = -~-a // 1
-    // alternates between -N and N+1 (where N is the initial value of a)
-    // equivalent to a += 1-2*a
-    ```
- 
+- [ ] actually useful bitwise operations for day to day programming
+    * toggle between `0` and `1`
+        ```javascript
+        // using boolean type coercion `!` and number type coercion `+`
+        a = 0
+        a = +!a // 1
+        a = +!a // 0
+        // alternates between 0 and 1
+        ```
+        ```javascript
+        // using bitwise XOR operator `^` (exclusive disjuction)
+        a = 0
+        a ^= 1 // 1
+        a ^= 1 // 0
+        // alternates between N and N+1 (where N is an even integer)
+        ```
+        ```javascript
+        // using the bitwise NOT operator `~` (turns bit 0 into 1)
+        a = 0
+        a = -~-a // 1
+        a = -~-a // -0
+        a = -~-a // 1
+        // alternates between -N and N+1 (where N is the initial value of a)
+        // equivalent to a += 1-2*a
+        ```
+    * if my `indexOf` returning `-1`? 
+        ```javascript
+        // bitwise NOT of 0 is -1 (and vice versa), and 0 coerces to false
+        !~-1 === true
+        ``` 
 - [ ] `Math.pow()` is old, we now have exponential operator `**`
 - [ ] labeled statements
     you can better manage nested loops that need to `break` or `continue`
@@ -257,6 +262,42 @@
         break named
         console.log('hey')
     }
+    ```
+    **Use case** When speed is crucial (for example, when responding to fetch events within a Service Worker)
+    ```javascript
+    let response
+    switchBlock: {
+        const file = matchDataFileURL(event.request.url) // non trivial operation
+        if(file) {
+            response = fetchDataFile(CACHE_NAME, file)
+            break switchBlock
+        }
+        const staticImg = matchStaticImageURL(event.request.url) // non trivial operation
+        if(staticImg) {
+            response = fetchStaticImage(CACHE_NAME, staticImg)
+            break switchBlock
+        }
+        response = fetch(event.request)
+    }
+    // do something with response
+    return response
+    ```
+    to write the same script without labeled block, you'd need a series of nested `if / else` blocks
+    ```javascript
+    let response
+    const file = matchDataFileURL(event.request.url) // non trivial operation
+    if(file) {
+        response = fetchDataFile(CACHE_NAME, file)
+    } else {
+        const staticImg = matchStaticImageURL(event.request.url) // non trivial operation
+        if(staticImg) {
+            response = fetchStaticImage(CACHE_NAME, staticImg)
+        } else {
+            response = fetch(event.request)
+        }
+    }
+    // do something with response
+    return response
     ```
 - [ ] css `mask-image` for opacity gradient (usually needs `-webkit-` prefix)
     - example 1: fade to background (overflowing text!)
