@@ -428,5 +428,5 @@
     // failed: /endpoint?q=ab
     // done: /endpoint?q=abc
     ```
-- [ ] order of script loading & execution
+- [ ] order of script loading & execution: from [v8 dev](https://v8.dev/features/modules#defer)
     ![](/public/images/script-async-defer.svg)
