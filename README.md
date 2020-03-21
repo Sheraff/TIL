@@ -430,3 +430,7 @@
     ```
 - [ ] order of script loading & execution: from [v8 dev](https://v8.dev/features/modules#defer)
     ![](/public/images/script-async-defer.svg)
+- [ ] CSS: invert black to white, don't change colors:
+    ```css
+        filter: invert(.862745) hue-rotate(180deg);
+    ```
