@@ -428,3 +428,5 @@
     // failed: /endpoint?q=ab
     // done: /endpoint?q=abc
     ```
+- [ ] order of script loading & execution
+    ![](/public/images/script-async-defer.svg)
