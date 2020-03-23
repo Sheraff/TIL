@@ -432,5 +432,5 @@
     ![](/public/images/script-async-defer.svg)
 - [ ] CSS: invert black to white, don't change colors:
     ```css
-        filter: invert(.862745) hue-rotate(180deg);
+    filter: invert(.862745) hue-rotate(180deg);
     ```
