@@ -387,3 +387,12 @@
     // failed: /endpoint?q=ab
     // done: /endpoint?q=abc
     ```
+- [ ] CSS line clamping with elipsis
+    ```css
+    {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;  
+        overflow: hidden;
+    }
+    ```
