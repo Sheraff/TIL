@@ -456,3 +456,4 @@
     // Then we set the value in the --vh custom property to the root of the document
     document.documentElement.style.setProperty('--vh', `${vh}px`);
     ```
+- [ ] CSS `scroll-padding` (for scroll snap) also applies to anchor offsets (e.g. JS `scrollIntoView` with CSS `scroll-padding-top: 70px`)
