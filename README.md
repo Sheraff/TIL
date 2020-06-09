@@ -198,7 +198,7 @@
         const result = doSomething(arg)
         return result
     }
-    // so without assigning to `result`
+    // so without assigning to `result` (and without returning)
     const fn = () => void doSomething(arg)
     ```
     But be careful, `void` is only applied to the the next statement
