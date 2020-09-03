@@ -50,18 +50,18 @@
 - [ ] `Symbol.toPrimitive` allows you do dictate how an object coerces based on the type of value the script is asking of it (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/toPrimitive) (https://www.keithcirkel.co.uk/metaprogramming-in-es6-symbols/)
     ```javascript
     // An object with Symbol.toPrimitive property.
-    var obj2 = {
+    const object = {
         [Symbol.toPrimitive](hint) {
-            if (hint == 'number')
+            if (hint === 'number')
                 return 10
-            if (hint == 'string')
+            if (hint === 'string')
                 return 'hello'
             return true
         }
     }
-    console.log(+obj2);     // 10        -- hint is "number"
-    console.log(`${obj2}`); // "hello"   -- hint is "string"
-    console.log(obj2 + ''); // "true"    -- hint is "default"
+    console.log(+object)     // 10        -- hint is "number"
+    console.log(`${object}`) // "hello"   -- hint is "string"
+    console.log(object + '') // "true"    -- hint is "default"
     ```
     `Symbol.iterator` also exists to define iterating behavior, `Symbol.species` to define the prototype
 
@@ -461,4 +461,47 @@
     ```javascript
     if ((val = foo(), val < 10)) {}
     while ((val = foo(), val < 10));
+    ```
+
+- [ ] JS structure type & primitive wrapper objects
+    ```javascript
+    const a = {}
+    a.constructor === Object // true
+    typeof a === 'object'    // true
+    a instanceof Object      // true
+
+    const b = []
+    b.constructor === Array  // true
+    typeof b === 'object'    // true
+    b instanceof Array       // true
+
+    const c = 1              // primitive
+    c.constructor === Number // true
+    typeof c === 'number'    // true
+    c instanceof Number      // false
+
+    const d = new Number(1)  // primitive wrapper object
+    d.constructor === Number // true
+    typeof d === 'number'    // false
+    d instanceof Number      // true
+    d instanceof Object      // true
+
+    const e = Number('1')    // explicit primitive coercion
+    e.constructor === Number // true
+    typeof e === 'number'    // true
+    e instanceof Number      // false
+    e instanceof Object      // false
+
+    d == 1  // true
+    e == 1  // true
+    e == d  // true
+    e === 1 // true
+    d === 1 // false
+
+    class Yo{}
+    const g = new Yo()
+    g.constructor === Yo     // true
+    typeof g === 'object'    // true
+    g instanceof Yo          // true
+    g instanceof Object      // true
     ```
