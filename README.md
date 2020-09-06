@@ -459,8 +459,8 @@
 - [ ] CSS `scroll-padding` (for scroll snap) also applies to anchor offsets (e.g. JS `scrollIntoView` with CSS `scroll-padding-top: 70px`)
 - [ ] JS sequence expression
     ```javascript
-    if ((val = foo(), val < 10)) {}
-    while ((val = foo(), val < 10));
+    if (val = foo(), val < 10) {}
+    while (val = foo(), val < 10);
     ```
 
 - [ ] JS structure type & primitive wrapper objects
