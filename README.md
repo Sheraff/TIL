@@ -8,7 +8,7 @@
 - [ ] Web APIs 
   - [ ] IntersectionObserver
   - [ ] IndexDB
-  - [ ] Service Worler
+  - [ ] Service Worker
 - [X] CSS attribute `contain: strict;` restricts layout / paint calculations (https://developers.google.com/web/updates/2016/06/css-containment)
 - [ ] PNGs to GIF client-side using WebAssembly ImageMagick rewrite (https://github.com/KnicKnic/WASM-ImageMagick)
 - [ ] preload
@@ -505,3 +505,5 @@
     g instanceof Yo          // true
     g instanceof Object      // true
     ```
+- [ ] `-webkit-tap-highlight-color` CSS property allows for setting the color of the blue highlight that flashes when tapping on mobile devices
+- [ ] `env(safe-area-inset-bottom)` CSS value is the amount of space (bottom in this case) that may be encroached on by the UI (usually 0 for standard desktops, more for iOS w/ the bottom bar, or androids w/ rounded corners)
