@@ -507,3 +507,7 @@
     ```
 - [ ] `-webkit-tap-highlight-color` CSS property allows for setting the color of the blue highlight that flashes when tapping on mobile devices
 - [ ] `env(safe-area-inset-bottom)` CSS value is the amount of space (bottom in this case) that may be encroached on by the UI (usually 0 for standard desktops, more for iOS w/ the bottom bar, or androids w/ rounded corners)
+- [ ] JS check for specific font loaded state
+    ```javascript
+    document.fonts.check('400 1em EB Garamond')
+    ```
