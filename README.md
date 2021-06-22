@@ -511,3 +511,5 @@
     ```javascript
     document.fonts.check('400 1em EB Garamond')
     ```
+- [ ] `navigator.sendBeacon` queues up a request to be sent even if the user closes the page
+- [ ] `'visibilitychange'` event on `document` is the last event reliably fired before a user leaves the page (but also fires when the user just switches to another tab/window without actually closing)
