@@ -233,7 +233,7 @@
         // alternates between -N and N+1 (where N is the initial value of a)
         // equivalent to a += 1-2*a
         ```
-    * if my `indexOf` returning `-1`? 
+    * is my `indexOf` returning `-1`? 
         ```javascript
         // bitwise NOT of 0 is -1 (and vice versa), and 0 coerces to false
         !~-1 === true
@@ -513,3 +513,101 @@
     ```
 - [ ] `navigator.sendBeacon` queues up a request to be sent even if the user closes the page
 - [ ] `'visibilitychange'` event on `document` is the last event reliably fired before a user leaves the page (but also fires when the user just switches to another tab/window without actually closing)
+
+- [ ] use cases for comma operator
+    ```js
+    // double for loop in one
+    const matrix = [
+        [1, 2, 3],
+        [4, 5, 6]
+    ]
+    const m = matrix.length
+    const n = matrix[0].length
+    for (
+        let i = 0, j = 0;
+        i < m;
+        j++, i+=!(j%n), j%=n
+    ) {
+        console.log(matrix[i][j])
+    }
+    // 1, 2, 3, 4, 5, 6
+    ```
+    ```js
+    // avoid duplicate code to initialize a while loop
+    const set = new Set([1, 2, 3])
+    let a
+    while (a = iterator.next(), !a.done) {
+        console.log(a.value)
+    }
+    // 1, 2, 3
+    ```
+    ```js
+    // simplify small reduce functions
+    [].reduce(
+        (acc, cur) => (acc.push(cur), acc),
+        []
+    )
+    ```
+    ```js
+    // add a console log in implicit returns
+    [].reduce(
+        (acc, cur) => (console.log(cur), acc + cur),
+        0
+    )
+    ```
+
+- [ ] ways to switch
+    ```js
+    switch(a) {
+        case 1:
+            console.log(1)
+            break
+        case 2:
+            console.log(2)
+            break
+    }
+    ```
+    ```js
+    switch(true) {
+        case a === 1:
+            console.log(1)
+            break
+        case a === 2:
+            console.log(2)
+            break
+    }
+    ```
+    ```js
+    label: {
+        if (a === 1) {
+            console.log(1)
+            break label
+        }
+        if (a === 2) {
+            console.log(2)
+            break label
+        }
+    }
+    ```
+
+- [ ] useful bitwise operations II
+    ```js
+    const sign = (x) => x >> 31 || 1
+    // -1 | 1
+    ```
+    ```js
+    const floor = (x) => x | 0
+    // 12.6 => 12
+    ```
+    ```js
+    const odd = (x) => x & 1
+    // 1 | 0
+    ```
+    ```js
+    const even = (x) => ~x & 1
+    // 1 | 0
+    ```
+    ```js
+    const toggle = (x) => x ^ 1
+    // 1 | 0
+    ```
